@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleIdentifier</key><string>com.luka.piroba</string>
+  <key>CFBundleName</key><string>Piroba</string>
+  <key>CFBundleExecutable</key><string>Piroba</string>
+  <key>CFBundlePackageType</key><string>APPL</string>
+  <key>CFBundleShortVersionString</key><string>0.1</string>
+  <key>CFBundleVersion</key><string>1</string>
+  <key>CFBundleIconFile</key><string>Piroba</string>
+  <key>LSMinimumSystemVersion</key><string>14.4</string>
+  <key>LSUIElement</key><true/>
+  <key>CFBundleURLTypes</key>
+  <array><dict>
+    <key>CFBundleURLName</key><string>com.luka.piroba</string>
+    <key>CFBundleURLSchemes</key><array><string>piroba</string></array>
+  </dict></array>
+  <key>NSMicrophoneUsageDescription</key><string>Piroba records your side of calls so it can draft your actions. Audio never leaves this Mac.</string>
+  <key>NSAppleEventsUsageDescription</key><string>Opens Terminal to review a digest in Claude Code.</string>
+</dict>
+</plist>

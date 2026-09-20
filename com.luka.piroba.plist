@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.luka.piroba</string>
+  <key>ProgramArguments</key>
+  <array><string>/Users/lukadadiani/piroba/Piroba.app/Contents/MacOS/Piroba</string></array>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><dict><key>SuccessfulExit</key><false/></dict>
+  <key>StandardErrorPath</key><string>/Users/lukadadiani/piroba/app.log</string>
+</dict>
+</plist>
