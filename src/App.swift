@@ -83,10 +83,12 @@ final class AppState: ObservableObject {
 
     private func poll() {
         guard settings.callMode != "off", !manual else { return }
-        if MicWatch.someoneElseIsRecording {
+        let ignored = settings.ignoredSet
+        let holders = MicWatch.holders().filter { !ignored.contains($0.bundle) }   // Granola etc. alone ≠ a call
+        if !holders.isEmpty {
             idleSince = nil
             if !recorder.isRecording, !skipped, ask == nil, Date() >= retryAfter {
-                settings.callMode == "auto" ? startRecording() : showAsk()
+                settings.callMode == "auto" ? startRecording() : showAsk(holders.map(\.name))
             }
             if let askedAt, Date().timeIntervalSince(askedAt) > 90 { dismissAsk(); skipped = true }   // unanswered = skip
         } else {
@@ -99,8 +101,9 @@ final class AppState: ObservableObject {
         }
     }
 
-    private func showAsk() {
-        let panel = AskPanel(record: { [weak self] in self?.dismissAsk(); self?.startRecording() },
+    private func showAsk(_ names: [String]) {
+        let who = names.prefix(2).joined(separator: " and ")
+        let panel = AskPanel(who: who, record: { [weak self] in self?.dismissAsk(); self?.startRecording() },
                              skip:   { [weak self] in self?.dismissAsk(); self?.skipped = true })
         panel.orderFrontRegardless()
         ask = panel; askedAt = Date()

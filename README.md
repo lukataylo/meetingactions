@@ -8,8 +8,12 @@ Claude Code as the summariser.
 ## How it works
 
 - Any app opening the microphone counts as a call (CoreAudio process list, so
-  Teams, Zoom, Meet, FaceTime all work). By default a small card asks whether to
-  record; Settings can switch that to record automatically, or do nothing.
+  Teams, Zoom, Meet, FaceTime all work). By default a small card names the app
+  and asks whether to record; Settings can switch that to record automatically,
+  or do nothing. Other recorders (Granola, Descript, OBS, QuickTime by default)
+  are ignored, so running Granola alongside doesn't trigger Piroba — the meeting
+  app itself does. Several apps can read one mic at once; a Bluetooth headset is
+  the exception, and Piroba falls back to the built-in mic for that.
 - While recording, a floating pill shows a waveform, timer and Stop (or timer
   only, or no pill at all — your choice in Settings).
 - Mic free for 60 s = call over. Audio is captured with AVCaptureSession on a

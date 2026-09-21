@@ -1,3 +1,4 @@
+import AppKit
 import CoreAudio
 import Foundation
 
@@ -26,8 +27,12 @@ private func string(_ obj: AudioObjectID, _ sel: AudioObjectPropertySelector) ->
 // Who is capturing from an audio input right now, minus us.
 // ponytail: one CoreAudio call covers Teams, Zoom, Meet, FaceTime — no per-app guessing.
 enum MicWatch {
-    static var someoneElseIsRecording: Bool {
+    struct Holder { let pid: pid_t; let bundle: String; let name: String }
+
+    // Every other process currently capturing from an input.
+    static func holders() -> [Holder] {
         let me = getpid()
+        var out: [Holder] = []
         for p in objects(AudioObjectID(kAudioObjectSystemObject), kAudioHardwarePropertyProcessObjectList) {
             var running: UInt32 = 0
             var a = addr(kAudioProcessPropertyIsRunningInput)
@@ -36,10 +41,14 @@ enum MicWatch {
             var pid: pid_t = -1
             var pa = addr(kAudioProcessPropertyPID)
             var ps = UInt32(MemoryLayout<pid_t>.size)
-            guard AudioObjectGetPropertyData(p, &pa, 0, nil, &ps, &pid) == noErr else { continue }
-            if pid != me { return true }
+            guard AudioObjectGetPropertyData(p, &pa, 0, nil, &ps, &pid) == noErr, pid != me else { continue }
+            let app = NSRunningApplication(processIdentifier: pid)
+            var buf = [CChar](repeating: 0, count: 256)
+            let procName = proc_name(pid, &buf, UInt32(buf.count)) > 0 ? String(cString: buf) : ""
+            let name = [app?.localizedName, procName].compactMap { $0 }.first { !$0.isEmpty } ?? "Something"
+            out.append(Holder(pid: pid, bundle: app?.bundleIdentifier ?? "", name: name))
         }
-        return false
+        return out
     }
 }
 

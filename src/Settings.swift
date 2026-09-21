@@ -15,6 +15,9 @@ final class Settings: ObservableObject {
     @Published var whisper: String        { didSet { save() } }
     @Published var summariser: String     { didSet { save() } }   // "ollama" | "claude" | "none"
     @Published var llm: String            { didSet { save() } }
+    @Published var ignoredApps: String    { didSet { save() } }   // bundle ids, comma-separated; other recorders
+    static let defaultIgnored = "com.granola.app, com.descript.beachcube, com.obsproject.obs-studio, com.apple.QuickTimePlayerX"
+    var ignoredSet: Set<String> { Set(ignoredApps.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }) }
     @Published private(set) var ollamaModels: [String] = []
     @Published private(set) var launchAtLogin = false
     let claudeInstalled: Bool
@@ -30,6 +33,7 @@ final class Settings: ObservableObject {
         whisper    = d.string(forKey: "whisper") ?? Settings.whisperModels[0]
         summariser = d.string(forKey: "summariser") ?? "ollama"
         llm        = d.string(forKey: "llm") ?? "gemma4:12b"
+        ignoredApps = d.string(forKey: "ignoredApps") ?? Settings.defaultIgnored
         claudeInstalled = FileManager.default.isExecutableFile(atPath: NSHomeDirectory() + "/.local/bin/claude")
         save()
         refreshExternal()
@@ -58,6 +62,7 @@ final class Settings: ObservableObject {
         d.set(callMode, forKey: "callMode"); d.set(pill, forKey: "pill"); d.set(micUID, forKey: "micUID")
         d.set(idleStop, forKey: "idleStop");     d.set(minSeconds, forKey: "minSeconds")
         d.set(whisper, forKey: "whisper");       d.set(summariser, forKey: "summariser"); d.set(llm, forKey: "llm")
+        d.set(ignoredApps, forKey: "ignoredApps")
         let env = """
         PIROBA_MODEL=\(whisper)
         PIROBA_SUMMARISER=\(summariser)
@@ -113,6 +118,10 @@ struct SettingsView: View {
                 }
                 row("Call over after") { stepper($settings.idleStop, 15...300, step: 15, unit: "s idle") }
                 row("Ignore under") { stepper($settings.minSeconds, 0...600, step: 30, unit: "s") }
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("Not a call when only these hold the mic").font(.callout)
+                    TextField("bundle ids, comma-separated", text: $settings.ignoredApps).textFieldStyle(.roundedBorder).font(.caption)
+                }
             }
 
             section("Processing") {

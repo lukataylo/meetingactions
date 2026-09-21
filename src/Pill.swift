@@ -81,7 +81,7 @@ struct Waveform: View {
 
 // Shown when another app opens the mic. Nothing is recorded until you say so.
 final class AskPanel: NSPanel {
-    init(record: @escaping () -> Void, skip: @escaping () -> Void) {
+    init(who: String, record: @escaping () -> Void, skip: @escaping () -> Void) {
         super.init(contentRect: NSRect(x: 0, y: 0, width: 380, height: 60),
                    styleMask: [.nonactivatingPanel, .borderless, .fullSizeContentView],
                    backing: .buffered, defer: false)
@@ -94,7 +94,7 @@ final class AskPanel: NSPanel {
         isMovableByWindowBackground = true
         hidesOnDeactivate = false
         isReleasedWhenClosed = false
-        contentView = NSHostingView(rootView: AskView(record: record, skip: skip))
+        contentView = NSHostingView(rootView: AskView(who: who, record: record, skip: skip))
         if let f = NSScreen.main?.visibleFrame {
             setFrameOrigin(NSPoint(x: f.maxX - frame.width - 16, y: f.maxY - frame.height - 12))
         }
@@ -102,13 +102,14 @@ final class AskPanel: NSPanel {
 }
 
 struct AskView: View {
+    var who: String
     var record: () -> Void
     var skip: () -> Void
     var body: some View {
         HStack(spacing: 12) {
             Image(systemName: "mic.fill").foregroundStyle(.red)
             VStack(alignment: .leading, spacing: 1) {
-                Text("Something's using the mic").font(.callout.weight(.medium)).fixedSize()
+                Text("\(who) is using the mic").font(.callout.weight(.medium)).fixedSize()
                 Text("Record your side of this call?").font(.caption).foregroundStyle(.secondary).fixedSize()
             }
             Spacer(minLength: 4)
