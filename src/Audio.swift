@@ -45,7 +45,9 @@ enum MicWatch {
             let app = NSRunningApplication(processIdentifier: pid)
             var buf = [CChar](repeating: 0, count: 256)
             let procName = proc_name(pid, &buf, UInt32(buf.count)) > 0 ? String(cString: buf) : ""
-            let name = [app?.localizedName, procName].compactMap { $0 }.first { !$0.isEmpty } ?? "Something"
+            // Helpers ("Microsoft Teams ModuleHost") live inside the parent .app: name the outermost bundle.
+            let outerApp = app?.bundleURL?.pathComponents.first { $0.hasSuffix(".app") }.map { String($0.dropLast(4)) }
+            let name = [outerApp, app?.localizedName, procName].compactMap { $0 }.first { !$0.isEmpty } ?? "Something"
             out.append(Holder(pid: pid, bundle: app?.bundleIdentifier ?? "", name: name))
         }
         return out

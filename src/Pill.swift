@@ -94,7 +94,9 @@ final class AskPanel: NSPanel {
         isMovableByWindowBackground = true
         hidesOnDeactivate = false
         isReleasedWhenClosed = false
-        contentView = NSHostingView(rootView: AskView(who: who, record: record, skip: skip))
+        let host = NSHostingView(rootView: AskView(who: who, record: record, skip: skip))
+        contentView = host
+        setContentSize(host.fittingSize)   // the card is as wide as its text, never wider
         if let f = NSScreen.main?.visibleFrame {
             setFrameOrigin(NSPoint(x: f.maxX - frame.width - 16, y: f.maxY - frame.height - 12))
         }
@@ -107,16 +109,19 @@ struct AskView: View {
     var skip: () -> Void
     var body: some View {
         HStack(spacing: 12) {
-            Image(systemName: "mic.fill").foregroundStyle(.red)
+            Image(systemName: "phone.fill").foregroundStyle(.green)
             VStack(alignment: .leading, spacing: 1) {
-                Text("\(who) is using the mic").font(.callout.weight(.medium)).fixedSize()
-                Text("Record your side of this call?").font(.caption).foregroundStyle(.secondary).fixedSize()
+                Text("Looks like you're on a call").font(.callout.weight(.medium)).fixedSize()
+                Text("\(who.count > 32 ? who.prefix(30) + "…" : who) has the mic — record your side?")
+                    .font(.caption).foregroundStyle(.secondary).fixedSize()
             }
-            Spacer(minLength: 4)
-            Button("Skip", action: skip).controlSize(.small)
-            Button("Record", action: record).controlSize(.small).keyboardShortcut(.defaultAction)
+            Spacer(minLength: 12)
+            Button("Record", action: record).controlSize(.small).fixedSize().keyboardShortcut(.defaultAction)
+            Button(action: skip) { Image(systemName: "xmark").font(.system(size: 10, weight: .semibold)) }
+                .buttonStyle(.plain).foregroundStyle(.secondary).help("Not now")
+                .keyboardShortcut(.cancelAction)
         }
-        .padding(.horizontal, 14).padding(.vertical, 10)
+        .padding(.leading, 14).padding(.trailing, 12).padding(.vertical, 10)
         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
         .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(.primary.opacity(0.08)))
     }
