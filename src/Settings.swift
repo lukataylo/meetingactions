@@ -9,7 +9,7 @@ final class Settings: ObservableObject {
 
     @Published var callMode: String       { didSet { save() } }   // "ask" | "auto" | "off"
     @Published var pill: String           { didSet { save() } }   // "wave" | "timer" | "hidden"
-    @Published var micUID: String         { didSet { save() } }   // "" = system default
+    @Published var micUID: String         { didSet { save() } }   // "" = built-in mic
     @Published var idleStop: Int          { didSet { save() } }   // seconds of free mic = call over
     @Published var minSeconds: Int        { didSet { save() } }
     @Published var whisper: String        { didSet { save() } }
@@ -98,7 +98,7 @@ struct SettingsView: View {
             section("Recording") {
                 row("Microphone") {
                     Picker("", selection: $settings.micUID) {
-                        Text("System default").tag("")
+                        Text("Built-in microphone").tag("")
                         ForEach(mics) { Text($0.name).tag($0.uid) }
                     }
                 }

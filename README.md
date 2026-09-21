@@ -10,7 +10,10 @@ Claude Code as the summariser.
 - Any app opening the microphone counts as a call (CoreAudio process list, so
   Teams, Zoom, Meet, FaceTime all work). By default a small card names the app
   and asks whether to record; Settings can switch that to record automatically,
-  or do nothing. Other recorders (Granola, Descript, OBS, QuickTime by default)
+  or do nothing. Recording uses the Mac's built-in microphone unless you pick
+  another in Settings: opening a Bluetooth headset's mic would flip it into the
+  call profile, which pauses music and steals the link from your meeting app.
+  Other recorders (Granola, Descript, OBS, QuickTime by default)
   are ignored, so running Granola alongside doesn't trigger Piroba — the meeting
   app itself does. Several apps can read one mic at once; a Bluetooth headset is
   the exception, and Piroba falls back to the built-in mic for that.

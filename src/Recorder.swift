@@ -56,7 +56,12 @@ final class Recorder: NSObject, ObservableObject, AVCaptureAudioDataOutputSample
         q.async {
             do {
                 try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
-                self.device = Recorder.captureDevice(uid: self.deviceUID) ?? AVCaptureDevice.default(for: .audio)
+                // Default to the Mac's own mic, not the system default: opening a Bluetooth headset's
+                // mic flips it from A2DP into the call profile, which pauses music and hands us zeros
+                // if the meeting app already holds it.
+                self.device = Recorder.captureDevice(uid: self.deviceUID)
+                    ?? AudioDevices.builtInMicUID.flatMap { Recorder.captureDevice(uid: $0) }
+                    ?? AVCaptureDevice.default(for: .audio)
                 guard let dev = self.device else { throw NSError(domain: "Piroba", code: 3, userInfo: [NSLocalizedDescriptionKey: "no input device"]) }
                 self.deviceName = dev.localizedName
                 self.qDir = dir
