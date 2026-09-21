@@ -36,6 +36,9 @@ final class Recorder: NSObject, ObservableObject, AVCaptureAudioDataOutputSample
     private var startedAt = Date()
     private var lastBuffer = Date()          // heuristic; written on cbq/q, read on main
     private var timer: Timer?
+    private var bufferCount = 0
+    private var peak: Float = 0                  // since the current device was opened
+    private var switchedToBuiltIn = false
     private var gen = 0                      // main only; bumps on every start/stop outcome or timeout
 
     // MARK: main-thread API
@@ -53,12 +56,12 @@ final class Recorder: NSObject, ObservableObject, AVCaptureAudioDataOutputSample
         q.async {
             do {
                 try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
-                self.device = self.deviceUID.isEmpty ? nil : AVCaptureDevice(uniqueID: self.deviceUID)
-                if self.device == nil { self.device = AVCaptureDevice.default(for: .audio) }
+                self.device = Recorder.captureDevice(uid: self.deviceUID) ?? AVCaptureDevice.default(for: .audio)
                 guard let dev = self.device else { throw NSError(domain: "Piroba", code: 3, userInfo: [NSLocalizedDescriptionKey: "no input device"]) }
                 self.deviceName = dev.localizedName
                 self.qDir = dir
                 self.segment = 0
+                self.peak = 0; self.bufferCount = 0; self.switchedToBuiltIn = false
                 try self.openSegment(in: dir)
             } catch {
                 self.qDir = nil
@@ -114,6 +117,24 @@ final class Recorder: NSObject, ObservableObject, AVCaptureAudioDataOutputSample
                 completion(done)
             }
         }
+    }
+
+    static func captureDevice(uid: String) -> AVCaptureDevice? {
+        guard !uid.isEmpty else { return nil }
+        if let d = AVCaptureDevice(uniqueID: uid) { return d }
+        let name = AudioDevices.inputs().first { $0.uid == uid }?.name
+        return AVCaptureDevice.DiscoverySession(deviceTypes: [.microphone, .external], mediaType: .audio, position: .unspecified)
+            .devices.first { $0.localizedName == name }
+    }
+
+    // A Bluetooth headset that another app already holds hands us zeros, not audio.
+    private func switchToBuiltIn() {
+        guard let uid = AudioDevices.builtInMicUID, let dev = Recorder.captureDevice(uid: uid), dev != device else { return }
+        plog("silent on \(deviceName) — switching to \(dev.localizedName)")
+        device = dev
+        deviceName = dev.localizedName
+        peak = 0
+        restartSegment()
     }
 
     // MARK: audio queue
@@ -180,7 +201,9 @@ final class Recorder: NSObject, ObservableObject, AVCaptureAudioDataOutputSample
         if !sessionStarted { w.startSession(atSourceTime: CMSampleBufferGetPresentationTimeStamp(sb)); sessionStarted = true }
         if wi.isReadyForMoreMediaData { wi.append(sb) }
         lastBuffer = Date()
-        let level = min(1, Recorder.rms(sb) * 6)   // ponytail: gain knob — raise if bars sit flat for quiet talkers
+        bufferCount += 1
+        let level = min(1, Recorder.rms(sb) * 6)
+        if level > peak { peak = level }   // ponytail: gain knob — raise if bars sit flat for quiet talkers
         DispatchQueue.main.async {
             self.levels.removeFirst()
             self.levels.append(level)
@@ -217,6 +240,11 @@ final class Recorder: NSObject, ObservableObject, AVCaptureAudioDataOutputSample
 
     private func tick() {
         elapsed = Date().timeIntervalSince(startedAt)
+        if Int(elapsed * 2) == 10 { plog("level check at 5s: peak \(peak), buffers \(bufferCount)") }   // one line, for "waveform is flat" reports
+        if elapsed >= 10, !switchedToBuiltIn, bufferCount > 50, peak < 0.002 {
+            switchedToBuiltIn = true
+            q.async { self.switchToBuiltIn() }
+        }
         if Date().timeIntervalSince(lastBuffer) > 5 {
             lastBuffer = Date()   // one restart per 5 s window even if q is slow
             q.async { self.restartSegment() }
