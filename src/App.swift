@@ -39,12 +39,16 @@ final class AppState: ObservableObject {
     let settings: Settings
     @Published var meetings: [Meeting] = []
     @Published var working: Set<String> = []
-    let recorder = Recorder()
+    private(set) var recorder = Recorder() { didSet { bindRecorder() } }
 
     let root = Settings.root
     var meetingsDir: URL { root.appendingPathComponent("meetings") }
 
     private var pill: PillPanel?
+    private var ask: AskPanel?
+    private var askedAt: Date?
+    private var skipped = false          // "Skip" holds until the mic goes free again
+    private var retryAfter = Date.distantPast
     private var panels: [String: (ActionsPanel, ActionsStore)] = [:]
     private var claudeWindow: Int?   // Terminal window id hosting the interactive claude session
     private var manual = false
@@ -53,7 +57,7 @@ final class AppState: ObservableObject {
 
     init(settings: Settings) {
         self.settings = settings
-        recorder.objectWillChange.sink { [weak self] in self?.objectWillChange.send() }.store(in: &bag)
+        bindRecorder()
         AppDelegate.onURL = { [weak self] url in self?.handleURL(url) }   // piroba://actions/<meeting-id>
         refresh()
         Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { [weak self] _ in
@@ -61,39 +65,107 @@ final class AppState: ObservableObject {
         }
     }
 
+    private func bindRecorder() {
+        bag.removeAll()
+        recorder.objectWillChange.sink { [weak self] in self?.objectWillChange.send() }.store(in: &bag)
+    }
+
     var statusLine: String {
         if recorder.isRecording { return manual ? "Recording" : "Recording call" }
+        if ask != nil { return "Call detected — record?" }
         if !working.isEmpty { return "Transcribing…" }
-        return settings.autoRecord ? "Listening for calls" : "Auto-record off"
+        switch settings.callMode {
+        case "auto": return "Listening — will record calls"
+        case "ask":  return "Listening for calls"
+        default:     return "Not watching for calls"
+        }
     }
 
     private func poll() {
-        guard settings.autoRecord, !manual else { return }
+        guard settings.callMode != "off", !manual else { return }
         if MicWatch.someoneElseIsRecording {
             idleSince = nil
-            if !recorder.isRecording { startRecording() }
-        } else if recorder.isRecording {
-            idleSince = idleSince ?? Date()
-            if Date().timeIntervalSince(idleSince!) >= Double(settings.idleStop) { stopRecording() }
+            if !recorder.isRecording, !skipped, ask == nil, Date() >= retryAfter {
+                settings.callMode == "auto" ? startRecording() : showAsk()
+            }
+            if let askedAt, Date().timeIntervalSince(askedAt) > 90 { dismissAsk(); skipped = true }   // unanswered = skip
+        } else {
+            skipped = false
+            if ask != nil { dismissAsk() }
+            if recorder.isRecording {
+                idleSince = idleSince ?? Date()
+                if Date().timeIntervalSince(idleSince!) >= Double(settings.idleStop) { stopRecording() }
+            }
         }
+    }
+
+    private func showAsk() {
+        let panel = AskPanel(record: { [weak self] in self?.dismissAsk(); self?.startRecording() },
+                             skip:   { [weak self] in self?.dismissAsk(); self?.skipped = true })
+        panel.orderFrontRegardless()
+        ask = panel; askedAt = Date()
+        NSSound(named: "Tink")?.play()
+    }
+
+    private func dismissAsk() {
+        let old = ask; ask = nil; askedAt = nil
+        old?.orderOut(nil)
+        DispatchQueue.main.async { old?.close() }
     }
 
     func startRecording(manual: Bool = false) {
         self.manual = manual
         let dir = meetingsDir.appendingPathComponent(Meeting.fmt.string(from: Date()))
         recorder.deviceUID = settings.micUID
-        do { try recorder.start(into: dir) } catch { NSLog("record failed: \(error)"); return }
-        let panel = PillPanel(recorder: recorder) { [weak self] in self?.stopRecording() }
-        panel.orderFrontRegardless()
-        pill = panel
-        refresh()
+        recorder.start(into: dir) { [weak self] error in self?.started(dir, error) }
+    }
+
+    private var fallingBack = false
+
+    private func started(_ dir: URL, _ error: Error?) {
+        do {
+            if let error {
+                plog("record failed: \(error.localizedDescription)")
+                try? FileManager.default.removeItem(at: dir)
+                retryAfter = Date().addingTimeInterval(60)   // don't spam a new folder every 5 s
+                self.manual = false
+                if (error as NSError).code == Recorder.hungCode {
+                    recorder = Recorder()   // the old one's queue is dead
+                    if let mic = Recorder.builtInMicUID, settings.micUID != mic, !fallingBack {
+                        plog("falling back to the built-in microphone")
+                        fallingBack = true
+                        recorder.deviceUID = mic
+                        recorder.start(into: dir) { [weak self] e in self?.started(dir, e) }
+                        return
+                    }
+                }
+                fallingBack = false
+                refresh()
+                return
+            }
+            fallingBack = false
+            plog("recording -> \(dir.lastPathComponent) via \(recorder.deviceName)")
+            if settings.pill != "hidden" {
+                let panel = PillPanel(recorder: recorder, showWave: settings.pill == "wave") { [weak self] in self?.stopRecording() }
+                panel.orderFrontRegardless()
+                pill = panel
+                plog("pill frame \(panel.frame)")
+            }
+            refresh()
+        }
     }
 
     func stopRecording() {
         manual = false
         idleSince = nil
-        pill?.close(); pill = nil
-        if let dir = recorder.stop() { process(dir) }
+        // orderOut, and release on the next turn: the Stop button's gesture is still dispatching
+        // inside this panel when we get here, so tearing it down synchronously is a use-after-free.
+        let old = pill; pill = nil
+        old?.orderOut(nil)
+        DispatchQueue.main.async { old?.close() }
+        recorder.stop { [weak self] dir in
+            if let dir { self?.process(dir) } else { self?.refresh() }
+        }
     }
 
     func process(_ dir: URL) {
@@ -128,7 +200,13 @@ final class AppState: ObservableObject {
         }.sorted { $0.id > $1.id }
     }
 
+    // piroba://record · piroba://stop · piroba://actions/<id>
     private func handleURL(_ url: URL) {
+        switch url.host {
+        case "record": if !recorder.isRecording { dismissAsk(); startRecording(manual: true) }; return
+        case "stop":   if recorder.isRecording { stopRecording() }; return
+        default: break
+        }
         guard url.host == "actions" else { return }
         let id = url.lastPathComponent
         if FileManager.default.fileExists(atPath: meetingsDir.appendingPathComponent(id).appendingPathComponent("digest.md").path) {

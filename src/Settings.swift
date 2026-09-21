@@ -7,7 +7,8 @@ final class Settings: ObservableObject {
     static let root = URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent("piroba")
     static let whisperModels = ["mlx-community/whisper-large-v3-turbo", "mlx-community/whisper-small-mlx", "mlx-community/whisper-base-mlx"]
 
-    @Published var autoRecord: Bool       { didSet { save() } }
+    @Published var callMode: String       { didSet { save() } }   // "ask" | "auto" | "off"
+    @Published var pill: String           { didSet { save() } }   // "wave" | "timer" | "hidden"
     @Published var micUID: String         { didSet { save() } }   // "" = system default
     @Published var idleStop: Int          { didSet { save() } }   // seconds of free mic = call over
     @Published var minSeconds: Int        { didSet { save() } }
@@ -21,7 +22,8 @@ final class Settings: ObservableObject {
     private let d = UserDefaults.standard
 
     init() {
-        autoRecord = d.object(forKey: "autoRecord") as? Bool ?? true
+        callMode   = d.string(forKey: "callMode") ?? ((d.object(forKey: "autoRecord") as? Bool ?? true) ? "ask" : "off")
+        pill       = d.string(forKey: "pill") ?? "wave"
         micUID     = d.string(forKey: "micUID") ?? ""
         idleStop   = d.object(forKey: "idleStop") as? Int ?? 60
         minSeconds = d.object(forKey: "minSeconds") as? Int ?? 60
@@ -53,7 +55,7 @@ final class Settings: ObservableObject {
     }
 
     private func save() {
-        d.set(autoRecord, forKey: "autoRecord"); d.set(micUID, forKey: "micUID")
+        d.set(callMode, forKey: "callMode"); d.set(pill, forKey: "pill"); d.set(micUID, forKey: "micUID")
         d.set(idleStop, forKey: "idleStop");     d.set(minSeconds, forKey: "minSeconds")
         d.set(whisper, forKey: "whisper");       d.set(summariser, forKey: "summariser"); d.set(llm, forKey: "llm")
         let env = """
@@ -95,7 +97,20 @@ struct SettingsView: View {
                         ForEach(mics) { Text($0.name).tag($0.uid) }
                     }
                 }
-                row("Auto-record calls") { Toggle("", isOn: $settings.autoRecord).toggleStyle(.switch) }
+                row("When a call starts") {
+                    Picker("", selection: $settings.callMode) {
+                        Text("Ask me").tag("ask")
+                        Text("Record automatically").tag("auto")
+                        Text("Do nothing").tag("off")
+                    }
+                }
+                row("While recording") {
+                    Picker("", selection: $settings.pill) {
+                        Text("Pill with waveform").tag("wave")
+                        Text("Pill, timer only").tag("timer")
+                        Text("No pill").tag("hidden")
+                    }
+                }
                 row("Call over after") { stepper($settings.idleStop, 15...300, step: 15, unit: "s idle") }
                 row("Ignore under") { stepper($settings.minSeconds, 0...600, step: 30, unit: "s") }
             }

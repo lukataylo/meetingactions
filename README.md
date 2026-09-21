@@ -8,9 +8,15 @@ Claude Code as the summariser.
 ## How it works
 
 - Any app opening the microphone counts as a call (CoreAudio process list, so
-  Teams, Zoom, Meet, FaceTime all work). A floating pill shows a waveform and timer.
-- Mic free for 60 s = call over. Audio is written in segments so a device change
-  mid-call (Teams mute/unmute) doesn't lose the rest.
+  Teams, Zoom, Meet, FaceTime all work). By default a small card asks whether to
+  record; Settings can switch that to record automatically, or do nothing.
+- While recording, a floating pill shows a waveform, timer and Stop (or timer
+  only, or no pill at all — your choice in Settings).
+- Mic free for 60 s = call over. Audio is captured with AVCaptureSession on a
+  background queue, in 16 kHz mono segments: a device change mid-call (Teams
+  mute/unmute, a headset switching profiles) starts a new segment instead of
+  losing the rest, and a device that blocks (Bluetooth headsets do) times out
+  after 15 s and falls back to the built-in microphone rather than freezing the app.
 - `piroba.sh process` concatenates, runs `mlx_whisper`, then asks Ollama for a digest:
   what it was about, actions you committed to, proposed ADO items, open questions.
 - A Things-style panel lists the actions. Tick them off, or hover and hit the arrow
@@ -34,6 +40,16 @@ launchctl bootstrap gui/$UID ~/Library/LaunchAgents/com.luka.piroba.plist
 The plist assumes `~/piroba` and the user `lukadadiani`; edit the paths if yours differ.
 Keep the folder out of `~/Documents` — launchd agents can't read it without a TCC grant.
 Settings live in the menu-bar popover and are mirrored to `config.env` for the script.
+
+## URL actions
+
+`open piroba://record`, `open piroba://stop`, `open piroba://actions/<meeting-id>`.
+Handy from Raycast, a keyboard shortcut, or `piroba.sh` itself.
+
+## Troubleshooting
+
+`~/piroba/app.log` has one line per segment, device, fallback and failure.
+Crashes land in `~/Library/Logs/DiagnosticReports/Piroba-*.ips`.
 
 ## Files
 

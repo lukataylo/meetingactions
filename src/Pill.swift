@@ -4,8 +4,8 @@ import SwiftUI
 // The floating capsule shown only while recording. Non-activating so it never
 // steals focus from the call; joins all Spaces so it sits over full-screen Teams.
 final class PillPanel: NSPanel {
-    init(recorder: Recorder, onStop: @escaping () -> Void) {
-        super.init(contentRect: NSRect(x: 0, y: 0, width: 200, height: 36),
+    init(recorder: Recorder, showWave: Bool, onStop: @escaping () -> Void) {
+        super.init(contentRect: NSRect(x: 0, y: 0, width: showWave ? 200 : 120, height: 36),
                    styleMask: [.nonactivatingPanel, .borderless, .fullSizeContentView],
                    backing: .buffered, defer: false)
         isFloatingPanel = true
@@ -16,7 +16,8 @@ final class PillPanel: NSPanel {
         hasShadow = true
         isMovableByWindowBackground = true
         hidesOnDeactivate = false
-        contentView = NSHostingView(rootView: PillView(recorder: recorder, onStop: onStop))
+        isReleasedWhenClosed = false   // AppState holds a reference; closing must not free the panel
+        contentView = NSHostingView(rootView: PillView(recorder: recorder, showWave: showWave, onStop: onStop))
         contentView?.wantsLayer = true
         if let f = NSScreen.main?.visibleFrame {   // top-right, under the menu bar
             setFrameOrigin(NSPoint(x: f.maxX - frame.width - 16, y: f.maxY - frame.height - 12))
@@ -27,6 +28,7 @@ final class PillPanel: NSPanel {
 
 struct PillView: View {
     @ObservedObject var recorder: Recorder
+    var showWave: Bool
     var onStop: () -> Void
     @State private var pulse = false
 
@@ -35,7 +37,7 @@ struct PillView: View {
             Circle().fill(.red).frame(width: 8, height: 8)
                 .opacity(pulse ? 1 : 0.35)
                 .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: pulse)
-            Waveform(levels: recorder.levels).frame(width: 70, height: 16)
+            if showWave { Waveform(levels: recorder.levels).frame(width: 70, height: 16) }
             Text(clock(recorder.elapsed))
                 .font(.system(.caption, design: .monospaced)).monospacedDigit()
                 .foregroundStyle(.secondary)
@@ -73,5 +75,48 @@ struct Waveform: View {
             .frame(height: geo.size.height)
             .animation(.linear(duration: 0.08), value: levels)
         }
+    }
+}
+
+
+// Shown when another app opens the mic. Nothing is recorded until you say so.
+final class AskPanel: NSPanel {
+    init(record: @escaping () -> Void, skip: @escaping () -> Void) {
+        super.init(contentRect: NSRect(x: 0, y: 0, width: 380, height: 60),
+                   styleMask: [.nonactivatingPanel, .borderless, .fullSizeContentView],
+                   backing: .buffered, defer: false)
+        isFloatingPanel = true
+        level = .floating
+        collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
+        isOpaque = false
+        backgroundColor = .clear
+        hasShadow = true
+        isMovableByWindowBackground = true
+        hidesOnDeactivate = false
+        isReleasedWhenClosed = false
+        contentView = NSHostingView(rootView: AskView(record: record, skip: skip))
+        if let f = NSScreen.main?.visibleFrame {
+            setFrameOrigin(NSPoint(x: f.maxX - frame.width - 16, y: f.maxY - frame.height - 12))
+        }
+    }
+}
+
+struct AskView: View {
+    var record: () -> Void
+    var skip: () -> Void
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "mic.fill").foregroundStyle(.red)
+            VStack(alignment: .leading, spacing: 1) {
+                Text("Something's using the mic").font(.callout.weight(.medium)).fixedSize()
+                Text("Record your side of this call?").font(.caption).foregroundStyle(.secondary).fixedSize()
+            }
+            Spacer(minLength: 4)
+            Button("Skip", action: skip).controlSize(.small)
+            Button("Record", action: record).controlSize(.small).keyboardShortcut(.defaultAction)
+        }
+        .padding(.horizontal, 14).padding(.vertical, 10)
+        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
+        .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(.primary.opacity(0.08)))
     }
 }

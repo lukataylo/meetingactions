@@ -58,4 +58,13 @@ enum AudioDevices {
     }
 
     static func id(forUID uid: String) -> AudioDeviceID? { inputs().first { $0.uid == uid }?.id }
+
+    // The Mac's own microphone: the one input that can't be a blocked Bluetooth link.
+    static var builtInMicUID: String? {
+        inputs().first { d in
+            var a = addr(kAudioDevicePropertyTransportType)
+            var t: UInt32 = 0; var s = UInt32(4)
+            return AudioObjectGetPropertyData(d.id, &a, 0, nil, &s, &t) == noErr && t == kAudioDeviceTransportTypeBuiltIn
+        }?.uid
+    }
 }

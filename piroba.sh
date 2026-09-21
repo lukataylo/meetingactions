@@ -28,7 +28,7 @@ process_dir() {
   dir=$(cd "$1" 2>/dev/null && pwd) || { log "no such dir: $1"; return 1; }
   ls "$dir"/audio-*.wav >/dev/null 2>&1 || { log "no audio in $dir"; return 1; }
 
-  # segments (native rate, may differ after a device change) -> one 16k mono audio.wav
+  # segments are 16k mono already; re-encode anyway so a stray odd segment can't break the concat
   for f in "$dir"/audio-*.wav; do echo "file '$f'"; done > "$dir/segments.txt"
   ffmpeg -nostdin -f concat -safe 0 -i "$dir/segments.txt" -ac 1 -ar 16000 -c:a pcm_s16le \
          -y "$dir/audio.wav" >>"$dir/ffmpeg.log" 2>&1 \
