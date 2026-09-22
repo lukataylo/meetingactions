@@ -1,0 +1,17 @@
+{
+ "matches": [
+  {
+   "ticket": 287960,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 287961,
+   "verdict": "no",
+   "proposal": ""
+  }
+ ],
+ "extras": [
+  "UX Enhancement: Maintain open sidebar during state transitions"
+ ]
+}

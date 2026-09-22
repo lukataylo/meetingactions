@@ -13,7 +13,7 @@ struct ActionItem: Identifiable, Codable, Equatable {
 // Per-meeting list, parsed once from digest.md, then owned by actions.json.
 @MainActor
 final class ActionsStore: ObservableObject {
-    @Published var items: [ActionItem] { didSet { save() } }
+    @Published var items: [ActionItem] { didSet { if items != oldValue { save() } } }
     @Published var about = ""
     let dir: URL
     private var file: URL { dir.appendingPathComponent("actions.json") }
@@ -98,14 +98,7 @@ struct ActionsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(title).font(.caption).foregroundStyle(.secondary)
-                Text("Actions").font(.title2.weight(.semibold))
-                if !store.about.isEmpty {
-                    Text(store.about).font(.callout).foregroundStyle(.secondary).lineLimit(2)
-                }
-            }
-            .padding(.horizontal, 22).padding(.top, 26).padding(.bottom, 14)
+            PanelHeader(caption: title, title: "Actions", subtitle: store.about)
 
             if store.items.isEmpty {
                 Text("Nothing to do from this one.").font(.callout).foregroundStyle(.tertiary)
@@ -130,9 +123,7 @@ struct ActionsView: View {
     }
 
     private var title: String {
-        let f = DateFormatter(); f.dateFormat = "yyyy-MM-dd_HHmm"
-        guard let d = f.date(from: store.dir.lastPathComponent) else { return store.dir.lastPathComponent }
-        return d.formatted(.dateTime.weekday(.wide).day().month(.abbreviated).hour().minute())
+        Meeting.fmt.date(from: store.dir.lastPathComponent).map(friendly) ?? store.dir.lastPathComponent
     }
 }
 
@@ -188,5 +179,21 @@ struct ActionRow: View {
         .contentShape(Rectangle())
         .onHover { hover = $0 }
         .animation(.easeOut(duration: 0.12), value: hover)
+    }
+}
+
+
+// Same header on every panel: small caption, big title, optional one-liner.
+struct PanelHeader: View {
+    let caption: String
+    let title: String
+    var subtitle: String = ""
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(caption).font(.caption).foregroundStyle(.secondary)
+            Text(title).font(.title2.weight(.semibold))
+            if !subtitle.isEmpty { Text(subtitle).font(.callout).foregroundStyle(.secondary).lineLimit(2) }
+        }
+        .padding(.horizontal, 22).padding(.top, 26).padding(.bottom, 14)
     }
 }

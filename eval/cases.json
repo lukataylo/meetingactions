@@ -1,0 +1,21 @@
+[
+  {"id": "offline-placements", "session": "2026-08-25T13-30-53Z-offline-placements-review",
+   "tickets": [[287960, "[FE][BE] Record Offline market responses against a contract amendment"], [287961, "[FE][BE] Record Offline market responses against a contract cancellation"]]},
+  {"id": "producing-broker", "session": "2026-08-26T09-11-45Z-producing-broker",
+   "tickets": [[288090, "[FE][BE] Show the review icon to the producing broker who requested the review"], [288093, "[FE][BE] Restrict editing to the lock holder — producing broker read-only while a risk is locked by the placing broker"], [288094, "[BE] Inherit producing broker exposure on clone and renewal from the original's assignment, not its creator"], [288096, "[FE] Replace the clone-risk product buttons with a product multi-select"]]},
+  {"id": "amendments-redesign", "session": "2026-08-27T12-29-55Z-amendments-redesign-meeting-3",
+   "tickets": [[289674, "Amendment types: endorsement, extension, cancellation, void"], [289675, "[FE][BE] Pick the amendment type when raising an amendment on a bound contract"], [289676, "[FE][BE] Extend a bound contract from a panel without reopening the contract form"], [289677, "[FE][BE] Raise a cancellation as an amendment type from the same amend menu"], [289678, "[FE][BE] Void a bound contract that was never on cover"], [289679, "[FE][BE] Switch placement type on an endorsement and attach the producing broker"], [289680, "[BE] Amendment documents for every type use the cancellation placeholder and template model"]],
+   "note": "filed 14 days later, after two earlier redesign meetings"},
+  {"id": "energy-liability", "session": "2026-09-08T14-28-53Z-energy-liability-feedback-discussion",
+   "tickets": [[289419, "[FE] Re-organise the account menu into logical groups"], [289420, "[FE] Host the underwriter platform agreement (MSA) as a static page linked from the account menu"], [289422, "[FE][BE] Lock the currency of a money field independently of the amount"], [289423, "[FE] Source the currency options of a money field from other fields"]],
+   "note": "tickets were created 13:04-13:10, the session started 14:28 — same-day feedback loop, order uncertain"},
+  {"id": "cyber-bulk-upload", "session": "2026-09-09T08-12-49Z-cyber-plus-tandup",
+   "tickets": [[289471, "[FE] Split the New quote button to offer bulk upload actions for entitled products"]]},
+  {"id": "facility-manager", "session": "2026-09-14T10-00-15Z-xtrain-facility-manager-navigation-and-data",
+   "tickets": [[289869, "[FE] Open Facility Manager in a new browser tab"], [289870, "[BE] Apply separated currency to market response and table collection sheets"], [289871, "[BE] Add insured name and UMR to table collection and audit log exports"], [289872, "[FE][BE] Export the audit log and chat log from their panels"]]},
+  {"id": "images", "session": "2026-09-14T08-27-46Z-standup",
+   "tickets": [[289906, "Images in contract data and generated documents"], [289907, "[BE] Attach an image to a field on a contract or an offer"], [289909, "[FE][BE] Render an attached image in generated documents"]]},
+  {"id": "contract-standup-17", "session": "2026-09-17T08-30-22Z-contract-team-standup",
+   "tickets": [[290341, "[FE] Rename \"Send to Lead(s)\" to \"Send to Insurer(s)\" under Simple Placement"], [290342, "[FE] Show the offer comparison matrix when only two insurers are being compared"], [290343, "[FE][BE] Choose agreement parties as a step after submitting an amendment"], [290344, "[FE][BE] Set how the lead is pre-selected as an agreement party per facility"], [290345, "[FE][BE] Set offline placement per insurer from the product definition"]],
+   "note": "tickets created next morning 06:38-07:01"}
+]

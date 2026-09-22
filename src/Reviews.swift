@@ -74,11 +74,7 @@ struct ReviewsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(store.waiting == 0 ? "Nothing waiting" : "\(store.waiting) waiting for you").font(.caption).foregroundStyle(.secondary)
-                Text("Reviews").font(.title2.weight(.semibold))
-            }
-            .padding(.horizontal, 22).padding(.top, 26).padding(.bottom, 10)
+            PanelHeader(caption: store.waiting == 0 ? "Nothing waiting" : "\(store.waiting) waiting for you", title: "Reviews")
 
             if store.items.isEmpty {
                 Text("Skills queue mockups here with /mockup.").font(.callout).foregroundStyle(.tertiary)

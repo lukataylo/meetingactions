@@ -30,6 +30,8 @@ struct Meeting: Identifiable {
     let id: String          // folder name, yyyy-MM-dd_HHmm
     let url: URL
     let status: Status
+    var summary: String? = nil   // "4 actions · 2 left"
+    var done = false
     var date: Date { Meeting.fmt.date(from: id) ?? .distantPast }
     static let fmt: DateFormatter = { let f = DateFormatter(); f.dateFormat = "yyyy-MM-dd_HHmm"; return f }()
 }
@@ -202,7 +204,14 @@ final class AppState: ObservableObject {
             else if working.contains(id) { status = .working }
             else if fm.fileExists(atPath: url.appendingPathComponent("digest.md").path) { status = .ready }
             else { status = .failed }
-            return Meeting(id: id, url: url, status: status)
+            var m = Meeting(id: id, url: url, status: status)
+            if status == .ready {
+                let store = ActionsStore(dir: url)   // parses digest.md / actions.json; both are tiny
+                let left = store.items.filter { !$0.done }.count
+                m.summary = store.items.isEmpty ? "No actions" : left == 0 ? "\(store.items.count) actions · all done" : "\(store.items.count) actions · \(left) left"
+                m.done = !store.items.isEmpty && left == 0
+            }
+            return m
         }.sorted { $0.id > $1.id }
     }
 
@@ -279,6 +288,56 @@ final class AppState: ObservableObject {
     }
 }
 
+// Friendly day label: Today 10:17 · Yesterday 14:50 · Fri 16:00 · 2 Sep 13:45
+func friendly(_ d: Date) -> String {
+    let cal = Calendar.current
+    let time = d.formatted(.dateTime.hour().minute())
+    if cal.isDateInToday(d) { return "Today \(time)" }
+    if cal.isDateInYesterday(d) { return "Yesterday \(time)" }
+    if let week = cal.date(byAdding: .day, value: -6, to: Date()), d > week { return "\(d.formatted(.dateTime.weekday(.abbreviated))) \(time)" }
+    return "\(d.formatted(.dateTime.day().month(.abbreviated))) \(time)"
+}
+
+struct SectionLabel: View {
+    let text: String
+    var body: some View {
+        Text(text.uppercased()).font(.caption2.weight(.semibold)).kerning(0.6).foregroundStyle(.tertiary)
+            .padding(.top, 6).padding(.bottom, 2)
+    }
+}
+
+// One tappable line in the menu: glyph · title · trailing text · chevron on hover.
+struct MenuRow<Trailing: View>: View {
+    let icon: String
+    var tint: Color = .secondary
+    let title: String
+    var subtitle: String? = nil
+    var action: (() -> Void)? = nil
+    @ViewBuilder var trailing: () -> Trailing
+    @State private var hover = false
+
+    var body: some View {
+        HStack(spacing: 10) {
+            Image(systemName: icon).font(.system(size: 12)).foregroundStyle(tint).frame(width: 16)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(title).font(.callout)
+                if let subtitle { Text(subtitle).font(.caption).foregroundStyle(.secondary) }
+            }
+            Spacer(minLength: 8)
+            trailing()
+            if action != nil {
+                Image(systemName: "chevron.right").font(.caption2.weight(.semibold))
+                    .foregroundStyle(.quaternary).opacity(hover ? 1 : 0)
+            }
+        }
+        .padding(.horizontal, 8).padding(.vertical, 6)
+        .background(hover && action != nil ? Color.primary.opacity(0.05) : .clear, in: RoundedRectangle(cornerRadius: 7))
+        .contentShape(Rectangle())
+        .onHover { hover = $0 }
+        .onTapGesture { action?() }
+    }
+}
+
 struct MenuView: View {
     @EnvironmentObject var app: AppState
     @EnvironmentObject var settings: Settings
@@ -286,81 +345,96 @@ struct MenuView: View {
 
     var body: some View {
         Group {
-            if showSettings { SettingsView { showSettings = false } } else { main }
+            if showSettings { SettingsView { showSettings = false }.padding(14) } else { main }
         }
-        .padding(14)
-        .frame(width: 280)
+        .frame(width: 300)
         .onAppear { app.refresh() }
     }
 
     private var main: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                Circle().fill(app.recorder.isRecording ? .red : .secondary.opacity(0.4)).frame(width: 7, height: 7)
-                Text(app.statusLine).font(.callout)
+        VStack(alignment: .leading, spacing: 2) {
+            // status
+            HStack(alignment: .center, spacing: 10) {
+                ZStack {
+                    Circle().fill(app.recorder.isRecording ? Color.red.opacity(0.15) : Color.primary.opacity(0.06)).frame(width: 30, height: 30)
+                    Image(systemName: app.recorder.isRecording ? "waveform" : "phone").font(.system(size: 13))
+                        .foregroundStyle(app.recorder.isRecording ? .red : .secondary)
+                }
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(app.statusLine).font(.callout.weight(.medium))
+                    Text(app.recorder.isRecording ? clock(app.recorder.elapsed) + " · " + app.recorder.deviceName : modeLine)
+                        .font(.caption).foregroundStyle(.secondary)
+                }
                 Spacer()
                 Button(app.recorder.isRecording ? "Stop" : "Record") {
                     app.recorder.isRecording ? app.stopRecording() : app.startRecording(manual: true)
                 }
                 .controlSize(.small)
             }
-            Divider()
-            HStack(spacing: 8) {
-                Image(systemName: "eye").font(.caption).foregroundStyle(app.reviews.waiting > 0 ? Color.accentColor : .secondary).frame(width: 14)
-                Text("Reviews").font(.callout)
-                Spacer()
-                Text(app.reviews.waiting > 0 ? "\(app.reviews.waiting) waiting" : "none waiting").font(.caption).foregroundStyle(.secondary)
-            }
-            .padding(.vertical, 2).contentShape(Rectangle())
-            .onTapGesture { app.openReviews() }
-            Divider()
+            .padding(.horizontal, 8).padding(.top, 4).padding(.bottom, 8)
+
+            Divider().padding(.horizontal, 8)
+
+            SectionLabel(text: "Reviews").padding(.horizontal, 8)
+            MenuRow(icon: "eye", tint: app.reviews.waiting > 0 ? .accentColor : .secondary,
+                    title: app.reviews.waiting > 0 ? "\(app.reviews.waiting) waiting for you" : "Nothing waiting",
+                    subtitle: app.reviews.items.isEmpty ? nil : "\(app.reviews.items.count) in the queue",
+                    action: { app.openReviews() }) { EmptyView() }
+
+            SectionLabel(text: "Meetings").padding(.horizontal, 8)
             if app.meetings.isEmpty {
-                Text("No meetings yet").font(.callout).foregroundStyle(.secondary)
+                Text("Nothing captured yet").font(.callout).foregroundStyle(.tertiary).padding(.horizontal, 16).padding(.vertical, 6)
             } else {
-                ForEach(app.meetings.prefix(8)) { m in MeetingRow(m: m) }
+                ForEach(app.meetings.prefix(6)) { m in MeetingRow(m: m) }
             }
-            Divider()
+
+            Divider().padding(.horizontal, 8).padding(.top, 6)
             HStack {
                 Button { showSettings = true } label: { Label("Settings", systemImage: "gearshape") }
                 Spacer()
                 Button("Quit") { NSApp.terminate(nil) }
             }
             .buttonStyle(.plain).font(.caption).foregroundStyle(.secondary)
+            .padding(.horizontal, 12).padding(.vertical, 8)
         }
+        .padding(8)
+    }
+
+    private var modeLine: String {
+        switch settings.callMode {
+        case "auto": "Records calls automatically"
+        case "ask":  "Asks before recording"
+        default:     "Manual only"
+        }
+    }
+    private func clock(_ t: TimeInterval) -> String {
+        let s = Int(t); return String(format: "%02d:%02d", s / 60, s % 60)
     }
 }
 
 struct MeetingRow: View {
     @EnvironmentObject var app: AppState
     let m: Meeting
-    @State private var hover = false
 
     var body: some View {
-        HStack(spacing: 8) {
-            Image(systemName: icon).font(.caption).foregroundStyle(tint).frame(width: 14)
-            Text(m.date, format: .dateTime.weekday(.abbreviated).day().month(.abbreviated).hour().minute())
-                .font(.callout)
-            Spacer()
-            if m.status == .ready {
-                if hover { Image(systemName: "arrow.up.forward.square").font(.caption).foregroundStyle(.secondary) }
-            } else if m.status == .failed {
-                Button("Retry") { app.process(m.url) }.controlSize(.mini)
-            } else {
-                Text(m.status == .recording ? "recording" : "working…").font(.caption).foregroundStyle(.secondary)
+        MenuRow(icon: icon, tint: tint, title: friendly(m.date), subtitle: m.summary,
+                action: m.status == .ready ? { app.openActions(m.url) } : nil) {
+            switch m.status {
+            case .failed:    Button("Retry") { app.process(m.url) }.controlSize(.mini)
+            case .recording: Text("recording").font(.caption).foregroundStyle(.red)
+            case .working:   ProgressView().controlSize(.mini)
+            case .ready:     EmptyView()
             }
         }
-        .padding(.vertical, 2).contentShape(Rectangle())
-        .onHover { hover = $0 }
-        .onTapGesture { if m.status == .ready { app.openActions(m.url) } }
     }
 
     private var icon: String {
         switch m.status {
         case .recording: "record.circle"
         case .working: "hourglass"
-        case .ready: "checkmark.circle"
+        case .ready: m.done ? "checkmark.circle.fill" : "checklist"
         case .failed: "exclamationmark.circle"
         }
     }
-    private var tint: Color { m.status == .recording ? .red : m.status == .failed ? .orange : .secondary }
+    private var tint: Color { m.status == .recording ? .red : m.status == .failed ? .orange : m.done ? .green : .secondary }
 }

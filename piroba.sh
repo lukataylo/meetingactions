@@ -11,7 +11,9 @@ set -uo pipefail
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
 MEETINGS="$HERE/meetings"
-[[ -f "$HERE/config.env" ]] && source "$HERE/config.env"   # written by the app's Settings
+# Settings from the app; PIROBA_CONFIG=/dev/null lets a caller (the eval suite) drive everything by env
+CONFIG="${PIROBA_CONFIG:-$HERE/config.env}"
+[[ -f "$CONFIG" ]] && source "$CONFIG"
 MODEL="${PIROBA_MODEL:-mlx-community/whisper-large-v3-turbo}"
 SUMMARISER="${PIROBA_SUMMARISER:-ollama}"   # ollama (local) | claude | none
 LLM="${PIROBA_LLM:-gemma4:12b}"

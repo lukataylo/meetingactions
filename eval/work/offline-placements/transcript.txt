@@ -1,0 +1,115 @@
+**Speaker 1** [00:17] hi
+**Speaker 3** [00:36] Hello, everyone. Hello.
+**Speaker 1** [00:40] Hello, guys.
+**Speaker 1** [00:46] Hello.
+**Speaker 4** [01:04] can we record this as well just in case we need to look back at anything
+**Speaker 4** [01:09] Cool.
+**Speaker 5** [01:12] I was just waiting for you guys to finish. Okay, so basically it begins by setting up an insurer on the insurer level or on the facility member level to set up an insurer as offline,
+**Speaker 5** [01:31] which means there won't be like direct information. How do I put this offers and declines and actions done by an underwriter? Everything is being done on the broker side. Everything from the offer, from the initial sending to the market as it is right now to the offers as well as the offer. for example, firm order flows and everything. And for now, as far as I know, amendments and cancellations and stuff like that is not in scope. That should be done afterwards. So for now, basic market placement from draft to bond is done on the broker side.
+**Speaker 5** [02:30] And... has more sense for us to show you exactly how that looks and how it's done and how it currently looks on the platform.
+**Speaker 5** [02:46] Stefan can just set up.
+**Speaker 5** [02:48] Stefan, are you showing that on dev or on QA?
+**Speaker 6** [02:51] This is on dev.
+**Speaker 5** [02:53] Okay, that probably works the same. So, have you set up an ensure to be offline? Yes. Okay, so you just fill
+**Speaker 6** [03:07] out the contract as usual and then you have to choose lead capacity.
+**Speaker 6** [03:13] See there's some offline here. It's labeled as such in the drop down menu.
+**Speaker 6** [03:23] So like this is an individual insurer here when you select him and we send to lead.
+**Speaker 6** [03:32] Well, normally, this offer button would be grayed out. You can't see the offer when the underwriters should fill it out, but because this is offline,
+**Speaker 6** [03:45] the broker is supposed to fill it out, so we can just go through the offer as usual, as an underwriter would.
+**Speaker 6** [03:55] So we have some required fields here,
+**Speaker 6** [04:01] for example, and then we can save and submit just like an underwriter would.
+**Speaker 6** [04:21] Yeah, so that's the major difference between the regular of the video and the offline. Go ahead, Dora.
+**Speaker 5** [04:29] As you just saw, as a broker,
+**Speaker 5** [04:33] Stefan changed the status from awaiting to offered. And I just wanted to make a suggestion that perhaps to make user story or something as a user experience enhancement,
+**Speaker 5** [04:47] since everything is being done in the same sidebar.
+**Speaker 5** [04:51] I don't think there is a need to close the sidebar upon transferring the contract to the state of offered or... That's the same case in firmware flow because in this case,
+**Speaker 5** [05:03] we had offered the risk and then it closed and we need to open the sidebar again just to accept it. It could just reload with the open sidebar perhaps, so we just don't need to click twice in the same place if there's no need to.
+**Speaker 4** [05:32] Yeah, that's really good. I like it. I was going to say, I think that evidence upload needs to be man-gigued, doesn't it? I think we had a requirement. It is. It is. OK, cool.
+**Speaker 6** [05:41] It is, but you can upload it at any step. It's not required. Oh,
+**Speaker 4** [05:46] I see.
+**Speaker 6** [05:47] And if you try to bind it without evidence, you're going to get an error.
+**Speaker 4** [05:53] Yeah, nice. Yeah, that looks really good.
+**Speaker 4** [06:00] I think as long as it is mandatory, yeah, pre-buying, as long as they've got that confirmation of whatever it is, yeah, that's fine.
+**Speaker 4** [06:09] Exactly as I pictured it working as well, which is nice. Yeah,
+**Speaker 6** [06:13] so now this offered state, usually the broker is able to see this. So this is pretty much business as usual for the broker side. He can accept or interview the offer. Now, I don't know why he wants to interview it, but it's possible.
+**Speaker 6** [06:33] So we can just go ahead and accept that.
+**Speaker 6** [06:38] Yeah, it's better to keep it the same.
+**Speaker 6** [06:42] Okay, so now since this contract has firm order flow enabled, we need to go ahead and request the firm order. This is again something that the broker would usually do. So we can go ahead and fill this out.
+**Speaker 6** [07:05] And now something that's new in the FO request state, this is when the, when the other writer is supposed to review the form order and make some changes if he wants.
+**Speaker 6** [07:17] But here the broker can see it and again, save or decline,
+**Speaker 6** [07:23] accept or decline.
+**Speaker 6** [07:33] okay and now just to demonstrate the fact that you can't complete the placement without
+**Speaker 6** [07:40] without uploading the evidence we can try it but we get an error saying evidence is required
+**Speaker 6** [07:49] so we can go ahead into the offer and upload some evidence
+**Speaker 6** [08:03] Yeah,
+**Speaker 6** [08:05] that's a limitation, but now when the evidence is uploaded, you can review it in the file section and then you can complete the placement.
+**Speaker 4** [08:29] yeah
+**Speaker 4** [08:34] yeah definitely yeah yeah and he's really good for tech things as well especially for our sort of first release with uh rescap so they they have this sort of quite defined
+**Speaker 4** [08:45] journey um with no under our own involvement so this fits that perfectly really good
+**Speaker 5** [08:53] I just have a couple of questions regarding how that would work in a real case scenario, just so I know the extent of testing that needs to be going on.
+**Speaker 5** [09:09] So let's say an insurer is offline, set us offline, that won't be like a toggle turned off, turned on. It would just be off or on.
+**Speaker 5** [09:22] Oh.
+**Speaker 2** [09:28] Okay.
+**Speaker 2** [09:32] Yep.
+**Speaker 5** [09:54] Okay, so is it then possible, based on that description, I'm guessing not, but I'm just going to check. Is it possible that an insurer is offline as a member, a facility member, but is it possible or if the insurer is offline, it can only be like both, not one or the other. Yeah.
+**Speaker 4** [10:27] Yeah.
+**Speaker 4** [10:33] Yeah.
+**Speaker 4** [10:42] I mean my understanding is pretty limited but I think exactly what you said Luca yeah I think it's for those companies that just have no interest in engaging themselves for whatever reason and yeah so they're effectively getting the broker to do that work for them so they work
+**Speaker 4** [11:03] yeah
+**Speaker 5** [11:11] Okay, since currently in the entity manager there's a toggle both on the insurer level and in the facility member level, so I'm guessing we only need just one for the insurer.
+**Speaker 5** [11:31] Well, yeah, but wouldn't that ensure be offline as a whole anyways?
+**Speaker 5** [11:38] So no need for a double toggle, just an ensure level toggle.
+**Speaker 5** [12:03] Okay, and could there be, I saw the ticket, I'm halfway through testing it, so there could be offline followers as well. I'm guessing there wouldn't be a use case where there's an accidental offline auto follower because they just don't do anything as it is.
+**Speaker 4** [12:26] Yeah, that's not a concept we've come across. It's been raised. I think it is legal for one or the other.
+**Speaker 5** [12:36] Okay, that was all the questions I had.
+**Speaker 5** [12:44] Yeah,
+**Speaker 3** [12:46] thank you. I don't have a question. I'm trying to connect all the dots. So there is no underwriter in this flow. So this is all about everything is work on broker side. He's doing that for someone else who is offline, who...
+**Speaker 3** [13:05] This was like a first time for me to see everything in one flow. Like a broker? Okay.
+**Speaker 3** [13:18] Yeah..
+**Speaker 4** [13:48] Sorry,
+**Speaker 4** [13:50] this is this release on Thursday?
+**Speaker 4** [13:53] Cool. Sorry,
+**Speaker 5** [13:56] one more question. Is it expected for the offline insurers to be a part of some complex market placement flow or just a straightforward one?
+**Speaker 5** [14:23] Yes.
+**Speaker 5** [14:27] The
+**Speaker 4** [14:27] best of my knowledge I think is one or the other. I don't think they all are actually saying that.
+**Speaker 4** [14:35] I think they could. I think we did talk about this in our, didn't we, if I'm wrong, whereby part of the risk could be done by offline markets, part of it offline.
+**Speaker 4** [14:45] The offline market could become just a much.
+**Speaker 4** [14:52] Yeah.
+**Speaker 4** [14:55] Yes.
+**Speaker 2** [14:58] Yep.
+**Speaker 2** [15:01] And
+**Speaker 4** [15:02] I think this comes down to the other piece of work that's standing around the panels, whereby one panel could be online and the other panel could be offline.
+**Speaker 4** [15:14] Yeah.
+**Speaker 4** [15:19] yeah
+**Speaker 2** [15:32] yeah
+**Speaker 6** [15:47] Yeah, another.
+**Speaker 6** [15:55] Well, I forgot the password for this.
+**Speaker 6** [15:59] I'm
+**Speaker 3** [15:59] going to send it to you. Is that Dev?
+**Speaker 6** [16:02] Yeah, this is Dev.
+**Speaker 3** [16:03] Okay, give me a sec.
+**Speaker 5** [16:06] It's on a short level.
+**Speaker 5** [16:20] I
+**Speaker 4** [16:21] think that does make sense think about it I can't imagine we'd have you know insurers with access to x-trade would then suddenly when I put the offline I don't see it seems a bit counter-intuitive I think the whole point of the offline is to give those open that business up to the to those insurers that don't have the access so yeah i think it's sure whatever does make sense
+**Speaker 3** [16:56] Well, I think I know that Alex is off by the end of the week,
+**Speaker 3** [17:02] so nothing before next week.
+**Speaker 3** [17:06] For sure, yeah, and maybe we can do a few votes by ourselves to check the flow and then to demo. Okay,
+**Speaker 2** [17:15] that's right.
+**Speaker 3** [17:18] Yeah, sure.
+**Speaker 3** [17:20] No worries.
+**Speaker 4** [17:23] A quick question for me.
+**Speaker 4** [17:25] So once this is out there in the wild, is this all effectively managed by Entity Manager Strapi? There's no additional config we need to do for this to work? It's just a case of setting that toggle to offline running shorter.
+**Speaker 6** [17:39] It's simple as this, really.
+**Speaker 2** [17:43] okay it's nice
+**Speaker 2** [17:48] yeah
+**Speaker 3** [17:49] straightforward
+**Speaker 3** [17:52] it's super rare Yeah.
+**Speaker 4** [18:14] absolutely yeah yeah yeah but yeah i've said this is really good from my perspective at least in terms of requirements and stuff um so i'm certainly thinking from the tech room perspective
+**Speaker 4** [18:36] Yeah, it's also not clear, I guess, that they need to do that. It doesn't look like a mandatory step. So what's some way of...
+**Speaker 4** [18:48] yeah
+**Speaker 2** [18:48] yeah
+**Speaker 2** [18:53] I
+**Speaker 1** [18:54] can't do anything with this
+**Speaker 1** [19:15] yeah
+**Speaker 3** [19:16] appreciate that
