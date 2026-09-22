@@ -171,17 +171,19 @@ struct ActionRow: View {
             }
             Spacer(minLength: 8)
 
-            if item.sent {
-                Image(systemName: "paperplane.fill").font(.system(size: 12)).foregroundStyle(.tertiary).help("Sent to Claude")
-                    .frame(width: 24, height: 22)
-            } else if hover && !item.done {
-                Button(action: { item.sent = true; send() }) {
-                    Image(systemName: "arrow.up.circle.fill").font(.system(size: 20)).foregroundStyle(Color.accentColor)
+            // The trailing slot is always 24 pt wide, so hovering never reflows the text.
+            ZStack {
+                if item.sent {
+                    Image(systemName: "paperplane.fill").font(.system(size: 12)).foregroundStyle(.tertiary).help("Sent to Claude")
+                } else if !item.done {
+                    Button(action: { item.sent = true; send() }) {
+                        Image(systemName: "arrow.up.circle.fill").font(.system(size: 20)).foregroundStyle(Color.accentColor)
+                    }
+                    .buttonStyle(.plain).help("Send to Claude Code")
+                    .opacity(hover ? 1 : 0)
                 }
-                .buttonStyle(.plain).help("Send to Claude Code")
-                .frame(width: 24, height: 22)
-                .transition(.opacity)
             }
+            .frame(width: 24, height: 22)
         }
         .padding(.horizontal, 12).padding(.vertical, 10)
         .background(hover ? Color.primary.opacity(0.04) : .clear, in: RoundedRectangle(cornerRadius: 8))
