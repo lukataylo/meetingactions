@@ -91,6 +91,7 @@ final class ActionsPanel: NSPanel {
     }
 }
 
+// 8-pt grid: margin 24 · checkbox 20 · gap 12 → text at x=56 · row padding 10/12
 struct ActionsView: View {
     @ObservedObject var store: ActionsStore
     var send: (ActionItem) -> Void
@@ -101,25 +102,27 @@ struct ActionsView: View {
             PanelHeader(caption: title, title: "Actions", subtitle: store.about)
 
             if store.items.isEmpty {
-                Text("Nothing to do from this one.").font(.callout).foregroundStyle(.tertiary)
-                    .padding(.horizontal, 22).padding(.bottom, 20)
+                Text("Nothing to do from this one.").font(.system(size: 14)).foregroundStyle(.tertiary)
+                    .padding(.horizontal, 24).padding(.bottom, 24)
             } else {
                 VStack(spacing: 0) {
                     ForEach($store.items) { $item in ActionRow(item: $item, send: { send(item) }) }
                 }
-                .padding(.horizontal, 12)
+                .padding(.horizontal, 12).padding(.bottom, 8)
             }
 
+            Rectangle().fill(Color.primary.opacity(0.08)).frame(height: 1).padding(.horizontal, 24)
             HStack {
-                Text(left == 0 ? "All done" : "\(left) left").font(.caption).foregroundStyle(.secondary)
+                Text(left == 0 ? "All done" : "\(left) left").font(.system(size: 12)).foregroundStyle(.secondary)
                 Spacer()
                 Button("Open digest") { NSWorkspace.shared.open(store.dir.appendingPathComponent("digest.md")) }
-                    .buttonStyle(.plain).font(.caption).foregroundStyle(.secondary)
+                    .buttonStyle(.plain).font(.system(size: 12)).foregroundStyle(.secondary)
             }
-            .padding(.horizontal, 22).padding(.vertical, 14)
+            .padding(.horizontal, 24).padding(.vertical, 16)
         }
-        .frame(width: 380)
+        .frame(width: 440)
         .background(.regularMaterial)
+        .gridOverlay()
     }
 
     private var title: String {
@@ -133,31 +136,35 @@ struct ActionRow: View {
     @State private var hover = false
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 12) {
+        HStack(alignment: .top, spacing: 12) {
             Button { withAnimation(.snappy(duration: 0.18)) { item.done.toggle() } } label: {
                 ZStack {
-                    Circle().strokeBorder(item.done ? Color.accentColor : .secondary.opacity(0.5), lineWidth: 1.5)
+                    Circle().strokeBorder(item.done ? Color.accentColor : .secondary.opacity(0.45), lineWidth: 1.5)
                     if item.done {
                         Circle().fill(Color.accentColor)
-                        Image(systemName: "checkmark").font(.system(size: 9, weight: .bold)).foregroundStyle(.white)
+                        Image(systemName: "checkmark").font(.system(size: 10, weight: .bold)).foregroundStyle(.white)
                     }
                 }
-                .frame(width: 18, height: 18)
+                .frame(width: 20, height: 20)
             }
             .buttonStyle(.plain)
+            .padding(.top, 1)   // optical: centre on the first 22-pt text line
 
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(item.text)
-                    .font(.body)
+                    .font(.system(size: 15))
+                    .lineSpacing(2)
                     .strikethrough(item.done, color: .secondary)
                     .foregroundStyle(item.done ? .tertiary : .primary)
                     .fixedSize(horizontal: false, vertical: true)
                 if item.ticket {
-                    HStack(spacing: 6) {
+                    HStack(alignment: .firstTextBaseline, spacing: 8) {
                         Text("ADO").font(.system(size: 9, weight: .semibold)).kerning(0.5)
-                            .padding(.horizontal, 5).padding(.vertical, 1.5)
-                            .background(.quaternary, in: Capsule())
-                        if !item.detail.isEmpty { Text(item.detail).font(.caption).lineLimit(2) }
+                            .padding(.horizontal, 5).padding(.vertical, 2)
+                            .background(.quaternary, in: RoundedRectangle(cornerRadius: 4))
+                        if !item.detail.isEmpty {
+                            Text(item.detail).font(.system(size: 12)).lineLimit(2).fixedSize(horizontal: false, vertical: true)
+                        }
                     }
                     .foregroundStyle(item.done ? .quaternary : .secondary)
                 }
@@ -165,16 +172,18 @@ struct ActionRow: View {
             Spacer(minLength: 8)
 
             if item.sent {
-                Image(systemName: "paperplane.fill").font(.caption).foregroundStyle(.tertiary).help("Sent to Claude")
+                Image(systemName: "paperplane.fill").font(.system(size: 12)).foregroundStyle(.tertiary).help("Sent to Claude")
+                    .frame(width: 24, height: 22)
             } else if hover && !item.done {
                 Button(action: { item.sent = true; send() }) {
-                    Image(systemName: "arrow.up.circle.fill").font(.title3).foregroundStyle(Color.accentColor)
+                    Image(systemName: "arrow.up.circle.fill").font(.system(size: 20)).foregroundStyle(Color.accentColor)
                 }
                 .buttonStyle(.plain).help("Send to Claude Code")
+                .frame(width: 24, height: 22)
                 .transition(.opacity)
             }
         }
-        .padding(.horizontal, 10).padding(.vertical, 8)
+        .padding(.horizontal, 12).padding(.vertical, 10)
         .background(hover ? Color.primary.opacity(0.04) : .clear, in: RoundedRectangle(cornerRadius: 8))
         .contentShape(Rectangle())
         .onHover { hover = $0 }
@@ -182,6 +191,35 @@ struct ActionRow: View {
     }
 }
 
+// Design aid: `defaults write com.luka.piroba showGrid -bool true` draws the 8-pt grid and the
+// 24-pt margins over every panel. Off by default; nothing else reads the flag.
+struct GridOverlay: ViewModifier {
+    let on = UserDefaults.standard.bool(forKey: "showGrid")
+    func body(content: Content) -> some View {
+        content.overlay {
+            if on {
+                Canvas { ctx, size in
+                    var minor = Path(); var major = Path()
+                    for x in stride(from: 0, through: size.width, by: 8) {
+                        if Int(x) % 40 == 0 { major.move(to: .init(x: x, y: 0)); major.addLine(to: .init(x: x, y: size.height)) }
+                        else { minor.move(to: .init(x: x, y: 0)); minor.addLine(to: .init(x: x, y: size.height)) }
+                    }
+                    for y in stride(from: 0, through: size.height, by: 8) {
+                        if Int(y) % 40 == 0 { major.move(to: .init(x: 0, y: y)); major.addLine(to: .init(x: size.width, y: y)) }
+                        else { minor.move(to: .init(x: 0, y: y)); minor.addLine(to: .init(x: size.width, y: y)) }
+                    }
+                    ctx.stroke(minor, with: .color(.cyan.opacity(0.12)), lineWidth: 0.5)
+                    ctx.stroke(major, with: .color(.cyan.opacity(0.28)), lineWidth: 0.5)
+                    var margins = Path()
+                    for gx in [24.0, 56.0, size.width - 24] { margins.move(to: .init(x: gx, y: 0)); margins.addLine(to: .init(x: gx, y: size.height)) }
+                    ctx.stroke(margins, with: .color(.red.opacity(0.6)), lineWidth: 1)
+                }
+                .allowsHitTesting(false)
+            }
+        }
+    }
+}
+extension View { func gridOverlay() -> some View { modifier(GridOverlay()) } }
 
 // Same header on every panel: small caption, big title, optional one-liner.
 struct PanelHeader: View {
@@ -190,10 +228,13 @@ struct PanelHeader: View {
     var subtitle: String = ""
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(caption).font(.caption).foregroundStyle(.secondary)
-            Text(title).font(.title2.weight(.semibold))
-            if !subtitle.isEmpty { Text(subtitle).font(.callout).foregroundStyle(.secondary).lineLimit(2) }
+            Text(caption).font(.system(size: 12, weight: .medium)).foregroundStyle(.secondary)
+            Text(title).font(.system(size: 24, weight: .bold))
+            if !subtitle.isEmpty {
+                Text(subtitle).font(.system(size: 13)).foregroundStyle(.secondary).lineLimit(2).lineSpacing(2)
+                    .fixedSize(horizontal: false, vertical: true).padding(.top, 2)
+            }
         }
-        .padding(.horizontal, 22).padding(.top, 26).padding(.bottom, 14)
+        .padding(.horizontal, 24).padding(.top, 32).padding(.bottom, 16)   // 32 = traffic-light row + 8
     }
 }

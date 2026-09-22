@@ -89,8 +89,9 @@ struct ReviewsView: View {
                 .frame(maxHeight: 520)
             }
         }
-        .frame(width: 420)
+        .frame(width: 440)
         .background(.regularMaterial)
+        .gridOverlay()
     }
 }
 
