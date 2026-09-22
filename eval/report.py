@@ -2,7 +2,9 @@ import json, glob, os, collections
 cases = {c["id"]: c for c in json.load(open("cases.json"))}
 rows, totals = [], collections.defaultdict(lambda: [0.0, 0, 0])   # sm -> [score, n, extras]
 for f in sorted(glob.glob("results/*.json")):
-    cid, sm = os.path.basename(f)[:-5].rsplit("-", 1)
+    base = os.path.basename(f)[:-5]
+    sm = next(k for k in ("claude-team", "ollama", "claude") if base.endswith("-" + k))
+    cid = base[: -len(sm) - 1]
     try: r = json.load(open(f))
     except Exception: rows.append((cid, sm, "judge failed", "", "")); continue
     score = sum({"yes": 1, "partial": 0.5}.get(m["verdict"], 0) for m in r["matches"])

@@ -1,0 +1,27 @@
+{
+ "matches": [
+  {
+   "ticket": 289906,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 289907,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 289909,
+   "verdict": "no",
+   "proposal": ""
+  }
+ ],
+ "extras": [
+  "Entity-level audit log view",
+  "Record delete events in the audit trail",
+  "Contract template storage and versioning in blob",
+  "Hide auto document generation conditions by role",
+  "Preferred languages per product: apply revised requirements",
+  "Backdated cancellation automation coverage"
+ ]
+}

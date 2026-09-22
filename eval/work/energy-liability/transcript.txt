@@ -1,0 +1,64 @@
+**Speaker 1** [01:36] love
+**Speaker 1** [01:50] Yo.
+**Speaker 1** [01:55] Nice
+**Speaker 3** [01:56] t-shirt.
+**Speaker 3** [02:00] Oh, sorry, guys. Sorry, sorry, sorry.
+**Speaker 3** [02:03] I was, the t-shirt is there's no people in the game.
+**Speaker 3** [02:09] baseball in this case. I have it with Snoopy playing golf,
+**Speaker 3** [02:16] Snoopy as mountain rescue. This is not a pyjama, by the way. I wear it properly. I'm not really just talking. Sorry, I was in a conversation with Claude, and it was responding me while I was talking to you.
+**Speaker 3** [02:35] How
+**Speaker 1** [02:36] are we all doing?
+**Speaker 1** [02:41] Is
+**Speaker 3** [02:42] that the right way to pronounce your name?
+**Speaker 3** [02:47] Yeah, that's correct.
+**Speaker 3** [02:50] Hi, we didn't meet him, Luca.
+**Speaker 1** [02:53] Nice to meet you.
+**Speaker 1** [02:54] Likewise.
+**Speaker 3** [03:59] Do we want the kind of model that pops up the first time they join?
+**Speaker 4** [04:14] Okay. Do any of them have bespoke MSAs?
+**Speaker 4** [04:26] That was my guess. Really complicated.
+**Speaker 4** [04:41] If... Yeah.
+**Speaker 3** [05:38] Honestly mixed feelings because I feel that there's a mix of hierarchies, not just the order, but the fact that you have things that
+**Speaker 3** [05:52] don't really sit at the same level, all in the same menu, it may not necessarily drive the users to the right place. And in terms of maybe privacy policy and cookie policy can stay at the bottom of the page in this size and just stay there forever.
+**Speaker 3** [06:13] But I don't know, I feel that...
+**Speaker 3** [06:17] We are conflating a few things in the same box. And you also know that my non-particularly secret push to have the data export as a separate page with more dignity and shape,
+**Speaker 3** [06:34] which may lead to have a different menu item. But other than that, the... I think what
+**Speaker 4** [06:39] Luke is saying is leave it looking even crappier for now. with the first one and and because i don't want to block a very small hosting of an html file as a link as part of a massive menu redesign though
+**Speaker 4** [06:56] thank
+**Speaker 1** [06:56] you chad
+**Speaker 4** [07:00] Yeah, but I guess the question is, do you want to do an iterative marginal improvement on a thing that we don't like, or do you want to not do anything and then do what I deem is describing there as a much bigger, more thought through vision of it later?
+**Speaker 3** [07:34] I, I, my take is that if this is more than a three pointer.
+**Speaker 3** [07:41] let's not touch it, then let's not touch it. That's my take. It's nice to capture it, and if down the line we figure that we do things differently and we want to keep this ticket, I don't disagree with the way that things are done, but there's probably something further down the line that we need to do, and if this is more than a three-pointer, I wouldn't touch it because we have a billion priorities plus one, and it doesn't feel that this is going to land a huge improvement.
+**Speaker 3** [08:12] The HTML link though needs to be done clearly.
+**Speaker 3** [08:22] Hold
+**Speaker 4** [08:22] on, just on the conclusion of that then, are we saying they're two completely separate things and this should just be slapping the link in the bottom menu there and then.
+**Speaker 4** [08:36] I like
+**Speaker 1** [08:39] that.
+**Speaker 4** [09:02] No, I think
+**Speaker 3** [09:03] this is going to be useful in lots of places.
+**Speaker 3** [09:07] Can you guys explain to me? I understand the single words one after the other, but why would
+**Speaker 4** [09:14] we... You can't say this field has to be dollars. You can either say this field has to be this amount of dollars, or you can say this field is unlocked. You can't do this field is dollars only. You can only do that at the moment by saying this field can now only ever be dollars, but not under a condition. You can force it by saying this field can only take an input of dollars. You can't say a field that has five inputs based on this condition is now locked to dollars.
+**Speaker 4** [09:41] which is can be problematic sometimes if you have 15 things and you try and add them up and someone like makes one amount krona and the rest of dollars and it just does a total of the units of currency so a guard against that would be to say that i can force all of the currencies to be locked but they can still put numbers in them does that sound right licka
+**Speaker 4** [10:06] Yeah.
+**Speaker 4** [11:01] I mean, whilst you're doing currency things and testing currency things, it would make sense to do this as well.
+**Speaker 4** [11:10] Because we can kind of, I can see this is basically a replication of the reference list
+**Speaker 4** [11:18] fit.fields that we do for enums, right? So it's just to make it do the same over here, so it kind of makes sense.
+**Speaker 4** [11:31] Yep.
+**Speaker 4** [12:11] Can
+**Speaker 3** [12:12] I can we spend a bit of time maybe not in this meeting looking into the power bi reporting for cyber plus because I'm wary of adding more features and things on a thing that we know it's going to be deprecated.
+**Speaker 3** [12:32] If this is required for feature parity, and I don't have it on my mind at the moment, I need to check, sorry. But if this is required for feature parity and it's the fastest route, let's do it. But adding features...
+**Speaker 3** [12:48] Yeah, that's something I would like to investigate and know soon because, yeah, if it's required and it's the fastest route, let's do it. But I don't want to spend too much time on something that we don't want to use as a future thing.
+**Speaker 4** [13:21] There's a couple of instances on some products recently where the negative condition would be useful to be able to enforce.
+**Speaker 4** [13:32] So I've got...
+**Speaker 4** [13:38] list of countries and clauses that map to them so like so if I say when it's this when it's this when it's this when it's this but if it's all of the others not this I don't have to like go through every single other country to go yeah or even like yeah either not any of these or none of the above conditions or something like that so you can also have it as blank so when it's blank do this But where it becomes particularly you need to enforce it is say if Malta triggers one of the conditions.
+**Speaker 4** [14:10] It's a bit of a problem when if I then go back as the user and select a country that doesn't trigger the conditions, it just leaves the Malta as clauses there because it's like that, because it hasn't got a match on a conditioned firing.
+**Speaker 4** [14:26] It doesn't update.
+**Speaker 4** [14:30] I
+**Speaker 3** [14:31] believe that there might be some practical requirements of this for CTIS, at least back when I was following this more closely. So maybe let's have a chat with Martina and see what she has found as well, because I think it can be more prominent, more needed than nice to have.
+**Speaker 3** [14:56] Yep, that'd be good.
+**Speaker 3** [15:12] Yeah,
+**Speaker 2** [15:13] so I received the feedback from Energy Liability. They did an end-to-end testing yesterday, and they raised the possibility to have a reject option on the producing broker part. So they have a sort of two independent portal for producing and placing broker. And at the moment, the producing broker has no way to reject the broker. They don't want to take up. So they can only notify the placing broker. So there is a notify button available, but no reject option.
+**Speaker 2** [16:34] Okay. Then I'll tell Martina as she's working on it right now and come back to Jack.
+**Speaker 2** [16:49] Yeah, if it's like, I mean, something that I would have a nice add-on, but they didn't say,
+**Speaker 2** [16:57] I mean, that is a must-have. It's just doing the end-to-end testing, they showed basically that there is this thing that they thought it was a mistake.
+**Speaker 1** [17:24] - Thank you, Luca. - Thanks, folks. - Cheers. - Bye.

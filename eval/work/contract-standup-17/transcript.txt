@@ -1,0 +1,58 @@
+**Speaker 1** [00:09] Hey Luca.
+**Speaker 1** [00:11] How
+**Speaker 2** [00:11] are you doing?
+**Speaker 1** [00:13] Good, good. Enjoy.
+**Speaker 1** [00:14] Yeah,
+**Speaker 3** [00:15] we're almost there. Good morning. Good morning.
+**Speaker 3** [00:18] I had a long walk with the girls this morning.
+**Speaker 3** [00:23] Did
+**Speaker 2** [00:24] you?
+**Speaker 2** [00:28] At the left?
+**Speaker 2** [00:30] Oh, they're still there.
+**Speaker 4** [00:42] I don't have any. I don't have any.
+**Speaker 4** [00:45] Without playing, I guess. Just relaxing. We can have nice weather, I guess.
+**Speaker 4** [00:51] this is going to be one of the last weekends that we're going to have like nice weather this year. So got to use that. How about you?
+**Speaker 4** [01:58] look look at your balance you're balancing between the apple and uh charme between american and chinese stuff you know
+**Speaker 4** [02:07] yeah
+**Speaker 5** [02:11] Have you heard from YouTube channel starter story?
+**Speaker 5** [02:17] There is a guy who is interviewing those indie hackers and the guys who are building this mini SaaS product. So they're really interesting guys who are making money on small apps and such.
+**Speaker 5** [02:39] Yeah, and yesterday I really knew that Entropic found the guy in Belgrade who will be their cloud ambassador and probably they are starting to organize more meetups in Belgrade and the
+**Speaker 5** [03:07] So it's not promising then.
+**Speaker 5** [03:34] yeah everything went well I released this morning on production UIT and sandbox seems to be seems to be working as expected so yeah no major issues or something like that so i will just uh observe logs during the day to see if something popped up but seems to be good and clear
+**Speaker 6** [04:07] Yeah, good morning. So yesterday I took a simple placement tickets and I'm carrying on with other UI tasks.
+**Speaker 6** [04:23] thank
+**Speaker 4** [04:23] you luca yeah this morning i made a pr for dotted trail uh it's a draft pr since
+**Speaker 4** [04:29] i think darkwood is a much his part yet so once he merge i'm gonna test it and then uh we're gonna merge it to dev i switch my focus um to facilitate file file attachments so that's gonna be my focus for today
+**Speaker 7** [04:50] I was working mostly on the Accord one, so finished I think pretty much a lot of the syntax needs to be supported for the mapping. So I tested a few examples yesterday, they seem pretty much okay. Some of the items are the scope at the moment, because we probably don't need them for the insurers at this moment precisely.
+**Speaker 7** [05:10] So I'll speak with JASP just to see if there's any updates that we need to do in the meantime.
+**Speaker 7** [05:19] So yeah, overall it's going pretty well.
+**Speaker 7** [05:22] And I don't know if I didn't get a reply from Simran on that product, sorry, for that contract that we need to update. I also found that it's also Housen Scotland, losing brokers is probably one that we missed or they didn't give us that contract initially.
+**Speaker 7** [05:39] I'm guessing that one. I also prepared the fix, so in case we need to do it, it's just a few minutes.
+**Speaker 7** [05:48] But yeah, we'll focus on the Accord for today, for the most part.
+**Speaker 8** [05:58] Thank you, Lukas. I finished yesterday with recording a transfer timestamp for the product definition and I started working on a transition from the.NET 8 to.NET 10.
+**Speaker 8** [06:13] Good
+**Speaker 9** [06:14] morning everyone. So I added a diagram into the documentation for migration.
+**Speaker 9** [06:22] Now that part from my side is on hold until Zerko discusses with the other part of the team.
+**Speaker 9** [06:30] In the meantime, I... I picked up the ticket for source X-Trade entities in contract API from the entity manager, so I'll be working on that. And also I went waiting for review on two of my pull requests regarding the audit trail.
+**Speaker 9** [06:52] That's pretty much it.
+**Speaker 10** [07:00] uh morning for me yesterday uh i've released the cloud fix let's say for the emails in the document links to be valid for seven days instead of just one day
+**Speaker 10** [07:14] Also, I had a look at some risks on production related to some UMR duplication potentially. So it wasn't an issue yesterday, but I did the change for the previous case a few weeks ago, the time I requested, forgot about that, so I did it yesterday.
+**Speaker 10** [07:37] And then I had a meeting with Rahul and Jelik also to explain how the entities are kept on our site, Rahul, to help him with the market link next phase of the integration plan.
+**Speaker 10** [07:52] So we also had that meeting for cyber on the remaining features going over where it was done.
+**Speaker 10** [08:00] And pre-refinement, I've also spent a bit of time continuing with the permissions spike. So at the moment, I'm also working on that,
+**Speaker 10** [08:12] looking at the backend side of it. now and how to design that.
+**Speaker 10** [08:17] And after that, I'd switch to the front and also just complete the spike. So we'll try to work on that as much as possible. From the meetings today, I have so far, I think, only one-on-one with Jill today. So I should have more time for this today, hopefully.
+**Speaker 10** [08:43] yeah
+**Speaker 11** [08:43] yeah thanks for coming here on say uh it's going well um so right now i'm reviewing the fusions pr for sale reports which i like the thing before with uh with everyone which assigns that product um i mean product uh so um so i'm reviewing that and let's uh still have a three more prs to review um and yeah i did that one bug for um
+**Speaker 11** [09:15] the front bank ticket for a written sign line that stands for NTU and offers from the same lead. So fix that, open PR right now. And after that, I need to open PR for conditional required fields, but that's gonna be in draft state
+**Speaker 11** [09:33] because we need to discuss how to change the JSON schema and all that required field and everything. So that's gonna be just in draft, I'll discuss that with the agent.
+**Speaker 11** [09:43] And,
+**Speaker 11** [09:46] yeah, after that, to open up PR for comparison metrics. So, yeah, that's my plan for today, to wrap up these three development things and to review these four PRs. So, you know.
+**Speaker 12** [10:05] Good morning, everyone. So yesterday, I finished up everything 6.6 related data export ticket that was left in the QA and then tested everything in free prod.
+**Speaker 12** [10:18] Everything worked as expected and also, you know, I will speak more on that, but also automated tests also all passed.
+**Speaker 12** [10:26] I sent a sign off earlier than usual and yeah, everything was working fine. And today I'll start testing the tickets that are already manually and I'll get on anything else that gets not.
+**Speaker 13** [10:47] Hi, yesterday I run the automated tests during the release and as Dora said, everything passed successfully. And today I'm continuing my standard work on tests.
+**Speaker 14** [11:05] Thanks Luca. So on my side, especially yesterday, service desk tickets and most of the time pre-protesting and for today I'm going back to service desk.
+**Speaker 14** [11:18] There's one ticket for now waiting for me, but during the day I expect more so I'll jump on that. So that's me.
+**Speaker 14** [11:27] thank
+**Speaker 12** [11:27] you look i'm on a goal say yesterday i worked on fixing several bugs related to multi-select default value or showing the loader when updating your new version of the definitions and restricting the contract statuses compared with value and this morning i started working on supporting big table collections in builder so that's me

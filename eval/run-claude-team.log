@@ -1,3 +1,11 @@
+skip offline-placements/claude-team
+== producing-broker / claude-team
+== amendments-redesign / claude-team
+== energy-liability / claude-team
+== cyber-bulk-upload / claude-team
+== facility-manager / claude-team
+== images / claude-team
+== contract-standup-17 / claude-team
 # Digest → ticket recall
 
 Ground truth: tickets the user filed within two days of a Trace-recorded meeting.
@@ -35,3 +43,4 @@ Score: yes = 1, partial = 0.5. Extras = proposals matching no filed ticket (not 
 | claude-team | 10.5/30 = 35% | 5.0 |
 | claude | 6/30 = 20% | 1.5 |
 | ollama | 5.5/30 = 18% | 1.8 |
+

@@ -1,0 +1,84 @@
+**Speaker 2** [00:27] Good
+**Speaker 1** [00:27] morning, welcome.
+**Speaker 3** [00:31] Good, good. How was your weekend?
+**Speaker 3** [00:38] Workbot.
+**Speaker 3** [00:40] Yeah, I see.
+**Speaker 3** [00:42] Here we try GPT Astra.
+**Speaker 3** [00:53] I saw that it can be incredible in building like personal sites for let's say some buildings or cars or any product.
+**Speaker 5** [01:10] What's up guys?
+**Speaker 6** [01:13] Thank you, thank you, morning.
+**Speaker 6** [01:15] Good, it was great, it was great.
+**Speaker 6** [01:18] Totally switched off, so picking up now.
+**Speaker 6** [01:25] Yeah, yeah. 16 days with weekends, so yeah.
+**Speaker 6** [01:34] I
+**Speaker 7** [01:35] graduated officially.
+**Speaker 7** [01:40] I was stressing for no reason. I was stressing, but yeah, it's done, finally. At last, no more thinking about it.
+**Speaker 7** [01:51] Yeah, I feel like at least it's just a year. This was four years. I'm gonna survive another year.
+**Speaker 7** [02:01] So it's fine.
+**Speaker 7** [02:15] i don't feel that way but okay
+**Speaker 5** [02:24] hey look it was good actually uh spend like half half of it uh with my uh
+**Speaker 5** [02:30] godfathers I thought you were gonna do concreting so yeah yeah it was good it's good yeah but
+**Speaker 5** [02:37] I spent a lot of energy I would say you know I'm not used to that kind of activity you know
+**Speaker 5** [02:44] so it was nice after that I do but the different kind of exercise you know that's the thing uh and after that we were preparing some barbecue had good food there so everything was good how what you mean.
+**Speaker 5** [03:11] Yeah, thank you Lucas. So yeah, last Friday I'm reading this preferable languages per product,
+**Speaker 5** [03:15] but I spoke with David this morning we have to change some things there so I'm gonna work on the implementation of that and also uh spoke with uh Darko regarding the audit logs I've got some questions for you there look about later during the day whenever yeah we can stand behind you yeah that's fine so yeah that's gonna be my focus so yeah
+**Speaker 4** [03:44] Good morning.
+**Speaker 4** [03:46] The migration, I'm still waiting for the response.
+**Speaker 4** [03:52] If my plan is written well or should we make any changes regarding that.
+**Speaker 4** [04:00] In the meantime, I'm investigating about the audit trail logs. I should have a call with Milan later to see whether we should implement this right now or should we wait the migration part first. But at least I can prepare everything, then we can just switch the database. But we will see.
+**Speaker 8** [04:34] Yeah, good morning. So, it's on Friday and today morning I finished with the restrict editing to the lock holder ticket. So, I'm making a PR and also waiting for some other PR reviews from Georgia.
+**Speaker 8** [04:50] And, yeah, in the meantime, I'm going to continue with the UI tickets.
+**Speaker 9** [05:01] Hi, thank you, Luca. So yeah, I finished with the share custom report.
+**Speaker 9** [05:07] I just need to test it a little bit. There is some parts left that I want to check.
+**Speaker 9** [05:14] But after that, I'll be working on a company, a client company that we talk on Friday. about those changes. I'll be making a fix and I'll be continuing work on the next ticket.
+**Speaker 9** [05:31] Thanks,
+**Speaker 10** [05:31] Luken.
+**Speaker 10** [05:33] Just a small update on the contract API on the 652 that Alexa did.
+**Speaker 10** [05:41] I tested the tornado for the Docmosis, so everything looks okay there. We have a new blob where the new templates will be held. So what's left just for me to communicate with the config team how we will store it and then maybe you'll agree on the versioning, but overall it's working.
+**Speaker 10** [05:56] I think we're set there.
+**Speaker 10** [06:00] Also, yeah, in the meantime, just pick something in the back in the meantime that was sitting there for, let's say hidden field, sorry, hidden conditions for the autodoc gen. That one is a bit tricky one since we've been in case we need to actually hide by the role.
+**Speaker 10** [06:32] But overall, I think that's pretty much from my side. I think the next one, the next bigger one is the external API with the Accord. So I have to double check with what's the next plan on that. But if you have something for me in the meantime, just let me know.
+**Speaker 3** [06:52] it's it's looking good so on friday i split the branches and released all changes on qaa there are some outstanding front end pull requests that are supposed to go to 6.6 so
+**Speaker 3** [07:06] probably once jolly will approve them and we will release 6.6 front end also there
+**Speaker 6** [07:21] morning for me you know just catching up with the messages um uh went through the the gmail emails now through outlook also and teams google chat so first we'll do that and yeah spoke already with milan a bit we'll spoke to george also and zeliko so um that's that's me for today and then i'll see what i'll pick up next
+**Speaker 7** [07:47] Good morning, Adrian. So, this morning I was catching up to what's been done. Everything deployed on QA and testing everything that's in the news. Currently, close one ticket, finishing up the ticket. And yeah, hopefully everything will be done in just at 4:06.6 and 10:10 this week.
+**Speaker 11** [08:09] Thank you, thanks Lucas and good morning everybody. So I mean nothing much on my side, I just came back to the office this morning, got a little bit of catching up to do and I saw there a couple of tickets for me on the service desk side, I will jump on that so that's my plan for today and the door also, I'll told me that there's going to be released this week. So it's going to be that and the tickets on the service desk. So yeah, that's it.
+**Speaker 12** [08:43] Hi, on Friday I was off and on Thursday we had the QA automation catch up meeting and I also created a PR for the local contract flow. and I also started working on extending the cancellation suite with backdated cancellation, so I'm currently working on that.
+**Speaker 12** [09:08] Thank
+**Speaker 13** [09:08] you, Luca. Also, my update is pretty much the same. I continued working on refactoring form for adding and editing new reference data. So that would be my plan for the day. It's almost everything done. I just have to fix the UI a little bit and then to retest everything. So that's me.
+**Speaker 13** [09:31] Yes,
+**Speaker 2** [09:32] good morning, Irvan. On Friday, I mostly worked on research that JCO gave me regarding the Microsoft Defender and the cost it will bring if we activate some new features to request security.
+**Speaker 2** [09:45] and other than that, fixing all the rest of the issues on the integration function and the
+**Speaker 2** [09:53] service.
+**Speaker 5** [10:36] There you go.
+**Speaker 5** [10:38] You able to see that, guys?
+**Speaker 5** [10:41] Yeah. So, Luca, I remember that once when I was asking you, like, where are we going to put this audit log on a UI, you said that that could be on, like, level of single entity, and then on, if I understood correct, maybe I didn't. and then on a new, yeah, yeah, yeah. But since this, I mean, audit log is gonna be like, on audit log we're not gonna cover only one entity, we're gonna have a list of all the entities, right?
+**Speaker 5** [11:13] So we're gonna have audit log for stamps, facilities, clients, producing, brokers, so, And we're going to have filter for all of these.
+**Speaker 5** [11:22] As you remember, we have the filter for entity type for the record, for the actor, and for the date range. So I don't know what you think, but maybe it would make more sense if we have a separate page for the audit log with list of all of that.
+**Speaker 5** [11:48] With the... facility or
+**Speaker 5** [11:57] but look look at one question if if users delete that uh facility how are we gonna how we gonna see it on audit log that the facility is deleted
+**Speaker 5** [12:10] Yeah.
+**Speaker 5** [12:22] But if you remember, you wrote it down on the first AC that there's going to be this record identifier so for some particular facility for some particular entity we can have that identifier for example like id of that facility or name of that facility doesn't matter but that means like for that facility always gonna be the same record identifier for example right
+**Speaker 5** [12:48] then we don't even need it because users gonna have information for that facility over here you know
+**Speaker 5** [13:09] Yeah, but who's going to have, because I think that also somewhere on AC4, that only admin is going to be able to open audit log. So that.
+**Speaker 5** [13:27] Yeah.
+**Speaker 5** [13:34] No, no, no, but for us it's like pretty much the same, but as I told you, I don't see like how that's gonna work since... For example, we have to record creation, delete, and update of some particular entity. And if we base audit log on an entity level, single entity level, not on an app level, that means delete doesn't make sense because we're never going to see that.
+**Speaker 5** [14:04] If that facility is deleted, the user is never going to be able to go in.
+**Speaker 5** [14:42] Yeah.
+**Speaker 5** [14:50] Yeah.
+**Speaker 5** [14:57] so does this mean that we're not going to record delete audit log at all
+**Speaker 5** [15:22] Yeah.
+**Speaker 4** [15:25] Yeah, we definitely should leave the delete just to have a record of something has been changed.
+**Speaker 4** [15:33] And
+**Speaker 5** [15:34] also in a list of the audit log we're going to have before and after. But for example, like if we got a list of all audit logs in one row, we got to like change for update. And for example, if user changed like, I don't know, 10 or 20 or like 30 values, where are we going to put it in that single row, you know?
+**Speaker 5** [16:06] But how about this before and after ready? Do we need that at all in that case or not?
+**Speaker 5** [16:17] Yeah, yeah.
+**Speaker 5** [16:19] Okay. So we're not going to show, we're not going to be able to show, delete for the audio log then.
+**Speaker 5** [16:28] We keep it somewhere dark is going to take care of that.
+**Speaker 5** [16:33] Creation, okay. Update, that's fine as well.
+**Speaker 5** [16:38] Actor, action, entity type. We don't need entity type then. If user come to facility, we don't have to show it.
+**Speaker 5** [16:48] Time, time before or after.
+**Speaker 5** [16:50] Okay.
+**Speaker 5** [16:52] Okay.
+**Speaker 2** [16:54] That was it for me.
+**Speaker 5** [17:02] yeah good good good okay sounds good guys that's it that's it thank you

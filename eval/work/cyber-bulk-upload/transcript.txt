@@ -1,0 +1,139 @@
+**Speaker 1** [03:03] Good morning. Good morning.
+**Speaker 1** [03:06] I'm not good here. How are you?
+**Speaker 1** [03:13] Good morning.
+**Speaker 2** [03:14] Good morning. Good morning. Good
+**Speaker 1** [03:15] morning.
+**Speaker 2** [03:16] Sorry, I haven't seen you guys for a while.
+**Speaker 2** [03:20] I hope you're doing all right.
+**Speaker 3** [03:23] Yeah,
+**Speaker 4** [03:24] you're doing great.
+**Speaker 4** [03:26] Yeah, not too bad. Good.
+**Speaker 2** [03:31] Luca, both Harry and Naomi are off tomorrow. So the cyber project meeting, we might want to think about what we want to do with that one for tomorrow.
+**Speaker 2** [03:51] yeah
+**Speaker 2** [03:54] yeah
+**Speaker 2** [04:05] Yeah, there he is. Morning. Hi Milan.
+**Speaker 5** [04:10] Sorry for being late. Alexa is joining as well. We had a call before this meeting.
+**Speaker 5** [04:23] Yeah,
+**Speaker 3** [04:24] of course. I continue working on establishing product definitions and localization.
+**Speaker 3** [04:34] What I'm trying to do there is to keep the existing normalization intact - while extending its responsibilities. The trickiest part and the biggest risk there is that label options -
+**Speaker 3** [04:52] we introduced IDs as a stable approach for localization.
+**Speaker 3** [04:58] However, that works. I got them translated. But what I'm trying to do is to do a proper implementation here and to separate concerns, to separate presentation from logic.
+**Speaker 3** [05:10] And I will continue with that.
+**Speaker 4** [05:20] so yesterday i finished implementing implementing the email notification task so basically the entire flow is now finished each recipient's language is now resolved from the per product configuration as they grouped by the language and emails are sent out. One thing that is not specifically mentioned in the user story, which I thought would be good to add is also startup validation to ensure that the fallback template at least exists. So I've also added that.
+**Speaker 4** [05:54] And it just requires one last look over and some manual testing and should be done. Aside from that, I've gone through some PRs and that's
+**Speaker 6** [06:14] good morning guys sorry for being late my machine needed to boot again i was on call with milan actually i think we found the bug uh but more on that later uh on the the bulk upload
+**Speaker 6** [06:34] yeah as expected. So I think it's ready to merge.
+**Speaker 6** [06:38] And while testing, I found a bug,
+**Speaker 6** [06:43] actually, that Alex has implemented that fix for the... Excel USD, I think, that hasn't passed the regression because same method is called from the template ingestion flow and also my bulk upload flow. So that only fixed the export part, but these two are failing now. and I got the errors for the actually valid date.
+**Speaker 6** [07:18] And also we tried on the template digestion flow and we successfully reproduced the bugs, me and Milo, right before this meeting. So I think we should raise a bug ticket and I can jump on it and make a fix. I think that can be a quick one. And I would need that also to actually test the bulk upload pooling.
+**Speaker 6** [07:45] So yeah, that's pretty much it. Other than that, I'll probably see what's the next ticket in the ready column or whatever.
+**Speaker 5** [08:01] yes yeah i did just want to know regarding this the issue is not persisted on on the production or so so so we are safe for so if we are safe to fix that that that was one of the latest updates uh
+**Speaker 5** [08:16] and changes made by alexa so it will be uh fixed quickly we will create that bug bug ticket and and address it properly so theodora can test it. So we will do that fix separately from this current Alex's work. So we can have that fixed before we merge this Alex's bulk upload ticket. So we are sure that it's ready for the next release.
+**Speaker 5** [08:45] And from my side yesterday, besides some meetings and discussions, had mainly worked on that external API ensure integrations. So we are still waiting from J to
+**Speaker 5** [08:58] to set up that callback on their side. In the meantime, I was worked on the endpoint expanding contract API. So we are basically able to populate all that data and merge that into one single offer on our contract API side. So it will be good, Luca, as we mentioned yesterday, just to discuss maybe those mappings with Chad. So to check with him if everything is mapped correctly. And yeah, so basically that will be my focus. And also maybe we should look into the one of the,
+**Speaker 5** [09:37] refine one of the upcoming tickets for the guys. We created that one for Power BI dashboard. So that one can be picked up.
+**Speaker 5** [09:48] I can't.
+**Speaker 5** [09:56] Mm-hmm. Yeah.
+**Speaker 5** [10:00] Okay.
+**Speaker 5** [10:03] Okay. Okay.
+**Speaker 5** [10:07] I will also create one ticket
+**Speaker 5** [10:12] that we discussed on the last working group meeting regarding
+**Speaker 5** [10:17] the access scope so we will check duplicates only on the companies or divisions access scope not for the entire product level.
+**Speaker 5** [10:25] So we will have two ready.
+**Speaker 5** [10:33] Yeah.
+**Speaker 2** [10:44] Right.
+**Speaker 2** [10:52] Right.
+**Speaker 1** [11:05] Yeah.
+**Speaker 1** [11:10] And
+**Speaker 2** [11:11] who would need to work on that or who would, is it one within this team, the skill set? Yeah.
+**Speaker 2** [11:17] I mean, if we've got capacity,
+**Speaker 2** [11:21] and is that, do they, do they use that today? Do they have a service like that today?
+**Speaker 2** [11:31] So it's like a parity thing rather than a new requirement. Could be.
+**Speaker 2** [11:39] Okay. Okay. If we've got capacity, then I don't see an issue as long as we're on top of all of the other elements.
+**Speaker 2** [11:50] I think that's fine.
+**Speaker 2** [11:56] Yeah, Luca, have you got a minute?
+**Speaker 2** [12:00] Yeah, thanks all.
+**Speaker 6** [12:02] Bye bye.
+**Speaker 2** [12:02] Thank you all.
+**Speaker 6** [12:03] Bye bye.
+**Speaker 2** [12:04] Cheers.
+**Speaker 2** [12:08] Firstly, how confident are you for end of September with all of the work that we need to do?
+**Speaker 1** [12:17] Okay.
+**Speaker 2** [12:27] yeah
+**Speaker 2** [12:33] yeah that they'll want yeah yeah
+**Speaker 2** [12:37] but they're not joining our calls, are they? So Naomi is, but she's UK, isn't she? Yeah, okay. So I think we need to set up a separate call then. Kelly's off just this week.
+**Speaker 2** [13:20] Okay. try and work out who in that team that we can get and when um i'll have a look at diaries it's um the ankle isn't it is the main stakeholder
+**Speaker 2** [13:38] um okay
+**Speaker 1** [13:46] okay
+**Speaker 1** [13:53] yeah
+**Speaker 1** [13:56] okay
+**Speaker 2** [14:08] yeah
+**Speaker 2** [14:11] okay
+**Speaker 2** [14:13] but but they but they being kept yeah yeah and that's the problem isn't it where um okay let me have a think about that and try and get something in to say we need to do a walk through with them next week i think Okay. Okay. All right. That's cool. And the other thing I just wanted to quickly speak about is Martina and Melissa's visit.
+**Speaker 2** [14:37] So you offered to do a walk with them, but I don't know what your, I don't know how much time you've got or how long it would take to build it into their sort of itinerary. And would you suggest it being a sort of maybe a late afternoon?
+**Speaker 2** [14:59] That's what I was thinking.
+**Speaker 2** [15:02] What's your availability on Tuesday and Wednesday?
+**Speaker 2** [15:22] I think... so they're gonna Martina Gary from CTIS gonna take Martina out for lunch one of the days I need to work out what what and Alex will do Melissa but Alex is also going to try and take them to Lloyd's So,
+**Speaker 2** [15:41] yeah, I'm just trying to work out what the best sort of,
+**Speaker 2** [15:45] you know, timing is because they fly early on Thursday morning. So we've got two full days. They've both got quite a bit of work to do. But I also want to make sure it's an enjoyable visit for them as well.
+**Speaker 2** [15:59] Yeah.
+**Speaker 2** [16:01] what's the weather let's let's work out what the weather's doing that might determine let's have a look so tuesday afternoon it's not a there's a small chance of rain um
+**Speaker 2** [16:32] okay yeah that's what i think it needs to be that sort of um or some of the or some of the more or i mean they've i don't know if martine has been um melissa was here a long time ago so you know even some of the key sort of city sites the more obvious ones i guess as well
+**Speaker 2** [16:59] yeah yeah so um so i think that that would be good so what do you think leaving leaving the office maybe four is quarter past four
+**Speaker 2** [17:10] yeah okay um because what i said to them as well is we'll be out we'll go out monday night drink and
+**Speaker 2** [17:19] um and dinner um tuesday or wednesday lunch so i just need to work that out and then i don't want to impose our evenings on them for everything but i also don't want them to feel a bit lost
+**Speaker 2** [17:32] in london either so um okay i will work it out and um and perhaps tomorrow we'll just confirm
+**Speaker 2** [17:41] super lovely and monday night um yeah if it's dry um what's the forecast for monday or you need to go um yeah okay i'll catch you soon cheers thanks
+**Speaker 1** [17:55] bye
+**Speaker 1** [18:03] hey
+**Speaker 7** [18:03] man what's up uh all good all good you good
+**Speaker 1** [18:08] morning anything
+**Speaker 7** [18:09] you know
+**Speaker 7** [18:19] oh
+**Speaker 8** [18:19] what did you watch
+**Speaker 8** [18:34] oh
+**Speaker 8** [18:38] i know the film i know the film but they didn't watch the series
+**Speaker 8** [18:59] I mean, it's not my cup of tea when it comes to that genre, but I know some people that like pretty much adore such genres like the action with spikes and stuff.
+**Speaker 8** [19:11] But not for me honestly.
+**Speaker 8** [19:16] Honestly, not much.
+**Speaker 8** [19:19] I didn't get much sleep honestly, so I just went home, played some games and went to sleep. That was the peak of my day.
+**Speaker 9** [19:32] I'm just mentally preparing it this way
+**Speaker 9** [19:35] for Friday yeah
+**Speaker 9** [19:39] preparing the presentation and everything so hopefully I don't
+**Speaker 9** [19:45] I'm a panicking type of person so I'm already nervous so hopefully it'll pass
+**Speaker 9** [19:54] It's done, but then I'm just going to go for a master's degree as well. So,
+**Speaker 9** [20:03] yeah, the suffering continues, but oh well.
+**Speaker 8** [20:15] uh yeah yeah there are just a few few simple updates for me um zalex is away there is a 652 uh hotfix although there may be some potential issues there so double check that uh if you're not then maybe we don't need to release it immediately not sure what's the priority of this one or or how severe i see it's on a production bug right
+**Speaker 8** [20:40] yeah
+**Speaker 5** [20:41] i just wanted to note that those changes caused issues on date ingestions for date field so we need to we need to fix that as well in the meantime before releasing it we have just found it
+**Speaker 5** [20:56] other yeah i'll raise this maybe i can add comment there or raise a new ticket
+**Speaker 5** [21:06] for the bug.
+**Speaker 8** [21:09] Yeah, so just want to double check that. If it's not a higher priority, I can pick it later on. There are a few issues I'm working on at the moment. The one that Simran mentioned about the documents generating. I know there were a few days that doesn't that wasn't fixed so pick that one up as a priority also worked on the docmosis
+**Speaker 8** [21:29] just checking how that works I think everything is going okay so far just a few updates in the back inside later on uh they had like a quick workshop with the conflict team to go over the docmosis and how that would look like when we switch the tornado uh and I think that was like the major focus yesterday, just checking out how the photos will work out.
+**Speaker 8** [21:53] And if that ticket from Alexa is not a higher priority, we can maybe delay this hotfix a little bit and then fix it later on. But if it's a priority, I can switch it in the meantime.
+**Speaker 8** [22:04] Yeah, definitely.
+**Speaker 8** [22:08] But yeah, that's pretty much for me. We'll focus on resolving the tissue for the generation that we have at the moment.
+**Speaker 10** [22:18] Yeah, thank you, Luca. Yeah, so I have a short update. Basically, I started with the document groups. It's going fine and I hope it will be done from the developer side today and I'll be testing it either today afternoon or tomorrow morning. So yeah, that's it.
+**Speaker 10** [22:41] Good
+**Speaker 11** [22:41] morning. Thank you, Luca. Yeah, it's going good. Yesterday I created a new payload with a new example and it went successfully to the MarketLake and also to GXB. So MarketLake guys approved it and we're just waiting for James to also answer like is everything.
+**Speaker 11** [23:02] all right on his side and i guess that that should be that for that uh i also created the new pr for this uh mapping for uh from offers to the market lines table that i wanted so that's currently in draft but i just tested it on on dev environment so i'll make some minor changes and publish that pr today And I've created that spike that we agreed yesterday. So basically to investigate the market link API more for this GXB UIDs for parties and some validation that we have or don't have on the market link side. So yeah, and that would be all from my side.
+**Speaker 12** [23:53] Good morning, everyone.
+**Speaker 12** [23:56] I'm making a good progress writing documentation and preparing everything needed for before the actual migration of the database to for the entity manager. So that's pretty much it from my side.
+**Speaker 13** [24:16] Yeah, good morning. So yesterday I was mostly focused on the...
+**Speaker 13** [24:23] I think I opened the PR for...
+**Speaker 13** [24:27] No, not that one. The one with... I'm
+**Speaker 14** [24:33] not listening to what I was saying.
+**Speaker 13** [24:35] What was it called?
+**Speaker 13** [24:37] No.
+**Speaker 13** [24:41] Yeah, that one. Yes, yes. So mostly on that. And I'm going to continue with the one that's in progress,
+**Speaker 13** [24:49] restrict everything to the log folder. And then I'm going to take some more tickets. I see my backlog has been updated.
+**Speaker 9** [25:04] Good morning. Again, so yesterday I tested out the bug fix that I did both on Q&A and pre-prod. I made a couple of new contracts with different dates and everything seems to be working okay. So everything regarding that needs to be tested. as well we'll be doing that today and anything else the good sense is that we're no new tickets I was just going over happy clothes and general uh functionalities everything will set so far so we'll be continuing to do that as well
+**Speaker 10** [25:36] but that's important
+**Speaker 15** [25:40] Yesterday I finished automated test for renewal flow. Currently I'm running all tests, so if everything passed successfully, I will create a PR.
+**Speaker 15** [25:56] Thank
+**Speaker 16** [25:57] you, Luca.
+**Speaker 16** [25:58] Yesterday I started working on supporting search by ID next to the label between the conditions. So I just have to resolve conflicts and then it will be ready to put it in a PR. And after that I will pick up the ticket that Jole mentioned yesterday that's related to extending the reference data with ID. So that's me.
+**Speaker 14** [26:24] Yes, there was some issues with the clusters that are running the TAPF in DevInQ environment.
+**Speaker 14** [26:31] I think those those failure in classes also closed our dog gen service for dev to not work. So Alex was blocked sometime before I fix that as well. Other than that, the Moses is now deployed on dev environment. I think everything should be working now on dev side, the CACD and everything.
+**Speaker 14** [26:53] I will see what else needs to be done there once Goran starts implementing code changes.
+**Speaker 14** [26:58] That's my setup.

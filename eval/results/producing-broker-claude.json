@@ -1,0 +1,27 @@
+{
+ "matches": [
+  {
+   "ticket": 288090,
+   "verdict": "yes",
+   "proposal": "Producing broker risk list: show \"sent for placing broker review\" state \u00b7 Add the placing\u2011broker\u2011review indicator (currently only visible to the placing broker) so they can tell what is already actioned."
+  },
+  {
+   "ticket": 288093,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 288094,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 288096,
+   "verdict": "no",
+   "proposal": ""
+  }
+ ],
+ "extras": [
+  "Producing broker: restore NTU on offered risks, keep Accept disabled"
+ ]
+}

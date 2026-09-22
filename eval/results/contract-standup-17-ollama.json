@@ -1,0 +1,33 @@
+{
+ "matches": [
+  {
+   "ticket": 290341,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 290342,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 290343,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 290344,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 290345,
+   "verdict": "no",
+   "proposal": ""
+  }
+ ],
+ "extras": [
+  "Update Accord mapping based on JASP feedback",
+  "Update contract for Housen Scotland"
+ ]
+}

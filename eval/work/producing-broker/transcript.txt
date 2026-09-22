@@ -1,0 +1,123 @@
+**Speaker 1** [00:01] I finally got two of my products live yesterday so
+**Speaker 1** [00:10] I've just yeah I've just put it live without sanctions because they're not actually going to use it it was just like a technical go live that was being forced to do
+**Speaker 1** [00:21] Hi. Hi, Tudora.
+**Speaker 1** [00:24] Hi, how are you? I'm good, thanks. How are you?
+**Speaker 2** [00:28] I'm doing good. Doing better, definitely.
+**Speaker 1** [00:31] I was going to say, you feeling better?
+**Speaker 2** [00:33] Yeah, definitely.
+**Speaker 2** [00:36] Just in time for the release, if you will.
+**Speaker 2** [00:40] Parity, hey.
+**Speaker 2** [00:43] Okay, I'm just going to re-slide into Strapi so I can set up both flows.
+**Speaker 2** [00:52] And I have left everything yesterday as it is so I can have finished contracts to show
+**Speaker 2** [01:09] Second.
+**Speaker 2** [01:18] Okay, yeah, the producing record is falsely set up on QA for some reason, but that is fixed as well. Let me just log in to the underwriter and I'm going to be sharing my screen so we can go through the flow.
+**Speaker 2** [01:37] Sorry,
+**Speaker 1** [01:39] I just...
+**Speaker 2** [02:11] Firstly, we are going to go with the can submit flag set to false.
+**Speaker 2** [02:20] We're going to go with this.
+**Speaker 2** [02:24] contract.
+**Speaker 1** [02:33] Yes, black screen at the moment.
+**Speaker 3** [02:37] Wait a second, I might need to re-log in to Teams.
+**Speaker 3** [02:48] Yeah.
+**Speaker 3** [02:52] Second, um, let me...
+**Speaker 3** [03:05] How about now?
+**Speaker 3** [03:10] I
+**Speaker 2** [03:11] might need to reload the tab so just
+**Speaker 3** [03:14] give me a second, I'm sorry.
+**Speaker 1** [03:16] Okay.
+**Speaker 1** [03:20] Are there any events this week?
+**Speaker 1** [03:35] What was it?
+**Speaker 1** [03:45] Nice. Where's the rooftop plotting? Is it Shoreditch?
+**Speaker 1** [03:54] Bidde, bedde, bedde. Jeg så gøre igen, at du har en bank om det, jeg har ikke fulg.
+**Speaker 1** [04:09] Can you get a bus? How long would that take?
+**Speaker 1** [04:14] There's a long time to be on the bus though.
+**Speaker 1** [04:19] Can
+**Speaker 2** [04:19] you see my screen now? Okay, great. Okay, so I'm going to start with producing broker.
+**Speaker 2** [04:27] The can submit flag is currently false. So I cannot even run a sanction check. This is a fully filled out contract.
+**Speaker 2** [04:38] And the only thing I can do is notify a placing broker that the risk is ready to review and I cannot do anything else. with the contract. I'm going to switch to the placing broker.
+**Speaker 1** [04:52] Just quickly, just go back to placing broker side again. Oh, this is producing broker. So the producing broker side again. Yeah. Previously, when you do ready for review, you'd get an icon next to... the draft to show that it's with placing broker review. Has that disappeared?
+**Speaker 1** [05:11] No, that is on the
+**Speaker 2** [05:12] placing broker side. The placing broker gets that. You're going to see that shortly on the placing broker side. I just need to. I was looking at aviation hardware. One second. That's the.
+**Speaker 2** [05:27] placing broker side as you can see here
+**Speaker 1** [05:28] placing broker review okay so this is what they were talking about yesterday luca um so when they actually submit for placing broker review it's hard for them to differentiate in the risk list what's actually been submitted
+**Speaker 1** [05:43] yeah i sorry i thought this placing broker review icon was available to them as well i think this is what they raised
+**Speaker 2** [05:59] Okay, so as the placing broker now with um I can go on with the sanction check and even with the sanction check ran. Now the current task of sending to lead is available and I can go back to the producing broker side just so I can show you that it's not possible to send to leads even though the sanction checks ran and the lead capacity is available. The send to leads button remains disabled and cannot be used on the producing broker side. So I can go back and use it only on the placing broker side.
+**Speaker 2** [06:42] Send it to leads.
+**Speaker 2** [06:45] And so far, no actions are required from the producing broker. I'm just going to go back and...
+**Speaker 2** [07:00] This is the underwriter side so just so I can make a quick offer so we can see it from the
+**Speaker 2** [07:07] offered state now it's offered.
+**Speaker 2** [07:11] I can just kind of show the producing broker first.
+**Speaker 2** [07:19] Since the can submit flag is false, they now cannot accept. There is no action button that allows accepting. Now I can only notify placing broker of the status change if the producing broker was the first one to see the status being offered.
+**Speaker 1** [07:51] Yes,
+**Speaker 1** [07:54] it's a firm order as well, the fact that they could accept the only option should be NTU or notify place in Africa.
+**Speaker 1** [08:03] Yeah,
+**Speaker 2** [08:04] okay. So now as a placing broker, I can go on and accept that.
+**Speaker 2** [08:15] Just
+**Speaker 1** [08:15] a second.
+**Speaker 1** [08:17] I'll ask a quick question. You know with notifications, does the producing broker get all of the notifications of like when an offer has been made, a firm order has been accepted, or is that just the placing broker?
+**Speaker 2** [08:32] I think they get most of the notifications. I know there's a couple of notifications that the producing broker does not get, but I was specifically asked to be skipped for producing brokers. I think Milan made a list on confluence of all the notifications. If I'm not mistaken, so maybe, yeah. So as the placing broker, I'm going to accept the...
+**Speaker 2** [09:00] offer and as we can see here as a placing broker I can click the request from order.
+**Speaker 2** [09:06] And if I was to go back to the producing broker I would just see the offer in the state of accepted and no other action buttons, no other possibilities. here.
+**Speaker 2** [09:20] Even if the current tests are available, if I go back to add capacity, I still will not be able to do so because the can submit flag is also this is pretty useless in the producing broker scenario.
+**Speaker 2** [09:40] I've checked everywhere, there is nothing I can do to send the firm order. So the only thing I can do is send the firm order from here.
+**Speaker 2** [09:48] and I can accept it as the producing broker who cannot submit, and I can complete placement. So that is everything the producing broker can do. Can we just go on to the producing broker side just to see before you go? Okay, yeah, of course. It just says firmware requested.
+**Speaker 2** [10:09] And
+**Speaker 1** [10:09] then can they see the firm order screen?
+**Speaker 2** [10:12] No, well the firm order is not visible on the, I don't think, no it's not visible on the placing worker site as well until the underwriter responds.
+**Speaker 2** [10:22] So the underwriter needs to respond anyways for the firm order to be visible. Yeah, I'm
+**Speaker 1** [10:27] just thinking previously, wasn't there the firm button or is that once it's been accepted that it's displayed?
+**Speaker 2** [10:36] Okay. Okay, so I'm now acting as an end writer, accepting the firm order, going back to producing worker since the requirement was for them to be able to complete the binding is still possible.
+**Speaker 2** [10:53] I'm just going to go through with completing placement.
+**Speaker 2** [11:00] Sorry, I might have.
+**Speaker 2** [11:08] Yeah.
+**Speaker 3** [11:10] Yeah.
+**Speaker 2** [11:11] They're not able to request.
+**Speaker 1** [11:15] Yeah.
+**Speaker 1** [11:24] yeah
+**Speaker 1** [11:26] yeah I think this is this is fine but I think previously there was obviously they could see the firm order
+**Speaker 1** [11:48] yeah the ability for them to not take it up is fine, because if they're the ones with the relationship with the client.
+**Speaker 1** [11:55] So it's just the issue with accepting. They didn't, because previously NTU was grayed out and offer was green.
+**Speaker 1** [12:04] The only two options they wanted was NTU and notify a placing broker. I think this is kind of fine to go live with, but it would be good to get the NTU option back for producing broker.
+**Speaker 1** [12:18] It's just except that they didn't want them to be able to do.
+**Speaker 1** [12:27] I
+**Speaker 2** [12:27] have also tested the whole flow with the cancer bit flag set to true, everything remains as it was. So.
+**Speaker 1** [12:38] Okay, nice. The only reason I say that is because otherwise the notified placing broker, like ideally they want to use the notified placing broker to, as in to instruct, find instructions, if you know what I mean, to let them know that it's okay to proceed. Otherwise, it's kind of like, why am I notifying you? Am I notifying you to decline it or am I notifying you to accept it?
+**Speaker 1** [13:00] So the NTU visibility should be there and they should be able to enter you, but just not accept, which is the opposite of what we previously had.
+**Speaker 1** [13:21] Yeah, I think so.
+**Speaker 1** [13:36] Yeah, just so that they can see in their risk list what has actually been sent and what they don't need to action anymore because otherwise everything's just in draft and it gets confusing to know what's... Obviously I showed them the dashboard but on the risk list you want to be able to differentiate
+**Speaker 1** [13:53] what is done and what's not done.
+**Speaker 2** [14:04] Yes, of course, let me just go back quickly and for the insurer, I'm going to demonstrate this on the aviation.
+**Speaker 2** [14:16] That's the one I always use. So the offline placements are being done on the individual insurer, I mean on the insurer level. There is a toggle now, which says is offline. Currently they're not offline. If I were to turn this toggle on and save changes, that insurer would be considered as offline and with no access to the platform as far as I understood.
+**Speaker 2** [14:43] And if I was to create a quote as the broker, I'm just refreshed so it gets the new save changes of the offline.
+**Speaker 2** [14:58] I'm going to clone a previous contract just so it goes quicker.
+**Speaker 2** [15:09] So,
+**Speaker 2** [15:13] this ticket was about that the whole flow from draft to bound is on the side of the broker with no underwriters on the platform.
+**Speaker 2** [15:27] which you'll be able to see in a second.
+**Speaker 2** [15:31] From the very beginning in choosing capacity, you can see the offline tag next to the insurer that is offline. If you were to select
+**Speaker 2** [15:45] facility that has an offline member or lead, it will be tagged in the same way.
+**Speaker 2** [15:53] For the sake of simplicity, I'm going to go with the individual insurer. And if I was to send it to leads, the status will change in the market. the risk will change to a waiting, but the offer button, which is usually grayed out and disabled in the state for brokers, is now available and clickable. And we get the same submission response as if the underwriter is responding to the risk. The same submission response and everything that an underwriter usually does is now available to brokers.
+**Speaker 2** [16:32] And so the worker goes and inputs all necessary information and uploads evidence if needed. And when I say if needed, that means it's necessary because in the step before binding, it will notify you if you haven't uploaded any evidence. It's mandatory.
+**Speaker 2** [16:56] And you can go on to save and submit just as the underwriter would.
+**Speaker 2** [17:01] and the offer will now take the sales offer.
+**Speaker 2** [17:07] You can, as a broker, now accept it as you normally would, and now it turns to accept it.
+**Speaker 2** [17:14] The flow also, I have switched off for murder flow. Let me just switch it back on,
+**Speaker 2** [17:23] so I can showcase that it works for murder as well.
+**Speaker 2** [17:28] Okay.
+**Speaker 2** [17:39] Basically, the flow will go the same way as the submission response as the initial offer did for the flow. Everything is in the hands of the broker with uploading
+**Speaker 2** [17:55] evidence. Now it's in the state of acceptance. Also I can go back add follow capacity. If it was a facility I can go back and add facility followers. It is possible to have an offline follower let's say and a normal lead or a online follower and offline lead. Those scenarios were all tested.
+**Speaker 2** [18:21] So this is a firm order request which a broker would normally fill out, which I'm doing right now.
+**Speaker 2** [18:28] However, once turned to firm order requested, I am now in this situation able to access the firm order response here as the underwriter would do. I can see everything from the firm order response that I already filled out and go on to accept it.
+**Speaker 2** [18:53] It then goes to a firmware accepted and I can go on to complete placement and bind it with basically no underwriter platform interaction.
+**Speaker 2** [19:06] And if we were to open the file sidebar to the uploaded files we would see that the document type for the evidence was marked as offline market evidence, which is mandatory to complete the binding process. And that's mostly it.
+**Speaker 2** [19:28] First.
+**Speaker 2** [19:32] Yeah,
+**Speaker 1** [19:33] no, definitely. That's really cool, this feature. I don't know if any of them would want to use it right now, but I think there'll definitely be use cases where there's markets that won't onboard. So I think that's really cool.
+**Speaker 1** [19:49] That could have unblocked Jewelers Block a lot easier if we had that. So yes, I think that's really cool.
+**Speaker 1** [19:59] I
+**Speaker 2** [20:00] just wanted to clarify that right now only the most basic flow, let's say, is covered. So amendments, cancellations, and anything like after the binding step, it's not covered. However, as far as understood, that will be done in the future.
+**Speaker 1** [20:30] that's really cool
+**Speaker 1** [20:35] he got my attention as soon as he sent that message
+**Speaker 1** [20:41] yeah thank you appreciate it
+**Speaker 4** [20:44] Of course.
+**Speaker 4** [20:47] thanks
+**Speaker 4** [20:49] You too. Bye-bye.

@@ -1,0 +1,27 @@
+{
+ "matches": [
+  {
+   "ticket": 289869,
+   "verdict": "partial",
+   "proposal": "Fix Navigation Loop from Facility Manager: Resolve the issue where users are forced to log out and back in to return to the live environment after accessing the Facility Manager."
+  },
+  {
+   "ticket": 289870,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 289871,
+   "verdict": "partial",
+   "proposal": "Improve Data Export Report Columns: Update the data export to include aircraft information, insured names, and policy references in a single view to simplify cross-checking."
+  },
+  {
+   "ticket": 289872,
+   "verdict": "no",
+   "proposal": ""
+  }
+ ],
+ "extras": [
+  "Automate Client Onboarding Sync"
+ ]
+}

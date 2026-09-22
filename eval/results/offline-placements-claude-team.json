@@ -1,0 +1,19 @@
+{
+ "matches": [
+  {
+   "ticket": 287960,
+   "verdict": "partial",
+   "proposal": "Amendments and cancellations for offline insurers \u2014 Product Backlog Item \u2014 Extend the broker driven offline flow to cover amendments and cancellations after bind."
+  },
+  {
+   "ticket": 287961,
+   "verdict": "partial",
+   "proposal": "Amendments and cancellations for offline insurers \u2014 Product Backlog Item \u2014 Extend the broker driven offline flow to cover amendments and cancellations after bind."
+  }
+ ],
+ "extras": [
+  "Keep sidebar open after offline placement status changes",
+  "Remove facility member level offline toggle",
+  "Show evidence upload as required before bind on offline placements"
+ ]
+}

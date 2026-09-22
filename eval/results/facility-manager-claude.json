@@ -1,0 +1,34 @@
+{
+ "matches": [
+  {
+   "ticket": 289869,
+   "verdict": "partial",
+   "proposal": "No route back from Facility Manager to xTrade live"
+  },
+  {
+   "ticket": 289870,
+   "verdict": "partial",
+   "proposal": "Data export: one row per aircraft with policy details \u00b7 Currency code and amount should be in separate columns."
+  },
+  {
+   "ticket": 289871,
+   "verdict": "partial",
+   "proposal": "Data export: one row per aircraft with policy details \u00b7 one row per aircraft with insured name, UMR and policy reference on each row"
+  },
+  {
+   "ticket": 289872,
+   "verdict": "partial",
+   "proposal": "Export chat log at risk level"
+  }
+ ],
+ "extras": [
+  "Migrated line slip rules not visible in Facility Manager",
+  "Show country names instead of numeric codes",
+  "Restrict third-party access to specific line slips",
+  "Insured and reinsured selected from Client Manager on direct risks",
+  "Bulk upload of clients",
+  "Access and distribution report per facility",
+  "Facility rules report",
+  "Client set-up triggered by onboarding completion"
+ ]
+}

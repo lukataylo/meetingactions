@@ -1,0 +1,30 @@
+{
+ "matches": [
+  {
+   "ticket": 289419,
+   "verdict": "yes",
+   "proposal": "Redesign bottom menu hierarchy and give data export its own page \u00b7 Product Backlog Item \u00b7 Separate items that sit at different levels in the bottom menu and move data export to a dedicated page with its own menu entry."
+  },
+  {
+   "ticket": 289420,
+   "verdict": "yes",
+   "proposal": "Add hosted HTML page link to the bottom menu \u00b7 Task \u00b7 Host the static HTML file and link it from the existing bottom menu alongside privacy and cookie policy."
+  },
+  {
+   "ticket": 289422,
+   "verdict": "yes",
+   "proposal": "Lock a field's currency under a condition while leaving the amount editable \u00b7 Product Backlog Item \u00b7 Allow a condition to fix the currency of one or more amount fields, mirroring reference-list locking for enums."
+  },
+  {
+   "ticket": 289423,
+   "verdict": "no",
+   "proposal": ""
+  }
+ ],
+ "extras": [
+  "Add \"Reject\" option for producing broker portal / Add a reject option for producing brokers",
+  "Investigate Power BI reporting for Cyber Plus",
+  "Support negative and \"none of the above\" conditions",
+  "Clauses set by a condition are not cleared when the trigger value changes"
+ ]
+}

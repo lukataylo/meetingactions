@@ -1,0 +1,28 @@
+{
+ "matches": [
+  {
+   "ticket": 288090,
+   "verdict": "yes",
+   "proposal": "Placing broker review indicator on producing broker risk list \u2014 After a producing broker sends a risk for placing broker review, show the same review status icon in their risk list that the placing broker sees."
+  },
+  {
+   "ticket": 288093,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 288094,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 288096,
+   "verdict": "no",
+   "proposal": ""
+  }
+ ],
+ "extras": [
+  "Producing broker can NTU but not accept when can-submit is false",
+  "Offline placements: post-bind flows"
+ ]
+}

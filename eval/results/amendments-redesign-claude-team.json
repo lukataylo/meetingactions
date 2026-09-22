@@ -1,0 +1,48 @@
+{
+ "matches": [
+  {
+   "ticket": 289674,
+   "verdict": "yes",
+   "proposal": "Per-type amendment definitions inheriting from product definition \u00b7 Introduce separate definition JSON files for cancellation, extension, void, capacity and endorsement."
+  },
+  {
+   "ticket": 289675,
+   "verdict": "partial",
+   "proposal": "Per-type amendment definitions inheriting from product definition (types are defined, but no proposal for a broker-facing picker when raising an amendment)"
+  },
+  {
+   "ticket": 289676,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 289677,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 289678,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 289679,
+   "verdict": "no",
+   "proposal": ""
+  },
+  {
+   "ticket": 289680,
+   "verdict": "partial",
+   "proposal": "Confirm that separate JSON files per amendment type work with placeholders and document generation the same way offers do. (follow-up only, not a proposed ADO item; models on offers rather than the cancellation placeholder/template)"
+  }
+ ],
+ "extras": [
+  "Select agreement parties at endorsement time",
+  "Propagate product definition changes to amendment definitions",
+  "Generate amendment definition JSON from product builder",
+  "Summary of changes driven by amendment definition",
+  "Field locking rules across contract and amendment forms",
+  "Manual follower underwriters in the amendment flow",
+  "Options for multiple leads and per-lead security panels"
+ ]
+}

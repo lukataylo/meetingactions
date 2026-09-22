@@ -1,0 +1,14 @@
+{
+ "matches": [
+  {
+   "ticket": 289471,
+   "verdict": "no",
+   "proposal": ""
+  }
+ ],
+ "extras": [
+  "Valid dates rejected in template ingestion and bulk upload",
+  "Scope duplicate checks to company and division access scope",
+  "Hotfix 652 blocked on date ingestion regression"
+ ]
+}

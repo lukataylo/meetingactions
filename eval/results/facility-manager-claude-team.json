@@ -1,0 +1,34 @@
+{
+ "matches": [
+  {
+   "ticket": 289869,
+   "verdict": "partial",
+   "proposal": "Return to live xTrade from Facility Manager \u00b7 Bug \u00b7 After opening Facility Manager there is no route back to the main xTrade dashboard, and re-authenticating returns the user to Facility Manager."
+  },
+  {
+   "ticket": 289870,
+   "verdict": "yes",
+   "proposal": "Data export: separate currency column \u00b7 Product Backlog Item \u00b7 Export monetary values with the currency in its own column and the amount as a plain number."
+  },
+  {
+   "ticket": 289871,
+   "verdict": "yes",
+   "proposal": "Data export: one row per aircraft with policy identifiers \u00b7 Product Backlog Item \u00b7 Aircraft schedule export includes insured name, UMR and policy reference on each row so aircraft data can be pulled from one source."
+  },
+  {
+   "ticket": 289872,
+   "verdict": "partial",
+   "proposal": "Per-risk chat log export \u00b7 Product Backlog Item \u00b7 Download the chat history for a single risk from the risk screen, formatted as speaker and message lines."
+  }
+ ],
+ "extras": [
+  "Migrated facility rules not visible in Facility Manager",
+  "Restrict third-party access by line slip",
+  "Show country name instead of code",
+  "Insured and reinsured selection from client list on direct placements",
+  "Bulk client upload",
+  "Facility access and notification report",
+  "Facility rules download",
+  "Client onboarding handoff notification"
+ ]
+}

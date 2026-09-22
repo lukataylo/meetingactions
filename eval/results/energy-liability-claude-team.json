@@ -1,0 +1,30 @@
+{
+ "matches": [
+  {
+   "ticket": 289419,
+   "verdict": "yes",
+   "proposal": "Redesign footer menu and give data export its own page \u2014 Product Backlog Item \u2014 Separate items that sit at different levels in the bottom menu, keep privacy and cookie policy in the footer, and move data export to a dedicated page with its own menu entry. Parked until prioritised."
+  },
+  {
+   "ticket": 289420,
+   "verdict": "yes",
+   "proposal": "Add hosted HTML page link to footer menu \u2014 Task \u2014 Host the HTML file and link to it from the bottom menu alongside the existing policy links."
+  },
+  {
+   "ticket": 289422,
+   "verdict": "yes",
+   "proposal": "Conditional currency lock on amount fields \u2014 Product Backlog Item \u2014 Allow a rule to lock a field's currency to a specific value under a condition while leaving the amount editable, so multi-field totals cannot mix currencies."
+  },
+  {
+   "ticket": 289423,
+   "verdict": "no",
+   "proposal": ""
+  }
+ ],
+ "extras": [
+  "Negative and blank conditions in rule mappings",
+  "Conditionally-added clauses persist after trigger no longer matches",
+  "Spike: Power BI reporting for Cyber Plus feature parity",
+  "Reject option for producing broker"
+ ]
+}

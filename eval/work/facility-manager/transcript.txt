@@ -1,0 +1,245 @@
+**Speaker 1** [00:01] Hi Luca, how are you?
+**Speaker 1** [00:04] Yeah, did you have a happy weekend?
+**Speaker 1** [00:10] Oh, nice.
+**Speaker 1** [00:13] Yeah, it was good. Lots of my football season started for my son. So, yeah, we had training and match and, yeah, lots of outdoors, which was quite nice.
+**Speaker 1** [00:26] Yeah, it was nice, yeah.
+**Speaker 1** [00:30] um it was very gray but we missed the rain uh yesterday morning yeah it rained after thank god we were home by that point so it was all right it was inside yeah yeah it was horrible morning alex good
+**Speaker 2** [00:46] morning all
+**Speaker 1** [00:47] right i'm
+**Speaker 2** [00:49] peachy
+**Speaker 2** [00:51] Having a typical Monday morning, bloody Weststar, panic.
+**Speaker 2** [00:55] Oh,
+**Speaker 1** [00:56] that's nice fun.
+**Speaker 2** [00:58] No, it's become unnecessarily complicated, this account.
+**Speaker 1** [01:01] Oh dear.
+**Speaker 2** [01:02] Never mind.
+**Speaker 2** [01:04] So what are we here for?
+**Speaker 1** [01:06] You requested this actually. This is for the facility manager to have a look at, make sure we know what we're doing with it and what it can and can't do really.
+**Speaker 2** [01:17] basically yeah what goes where blah blah blah
+**Speaker 2** [02:08] so what's what's the intention of what we can do ourselves in team so what the emma can do
+**Speaker 2** [02:30] Can
+**Speaker 1** [02:30] we only do it to a product or can we limit it to a specific line slip? Just thinking of someone like, is it Archao where they do their own but they only have specific lines of access?
+**Speaker 2** [02:49] I don't know what you mean, Nams.
+**Speaker 1** [02:51] ARC acts as a third party.
+**Speaker 2** [02:56] Oh, sorry, that's ARC.
+**Speaker 2** [03:00] Oh,
+**Speaker 1** [03:00] sorry, no. So, yeah, so if we were to give them
+**Speaker 1** [03:05] the visibility to see whole war could they see all whole war lines that so could we say only atrium
+**Speaker 2** [03:11] yeah so we've got the ability to be able to restrict that wouldn't we so we could select what they could and couldn't see
+**Speaker 1** [03:17] to do to give them access to a product is good but we would also need to be able to select a line slip a
+**Speaker 2** [03:29] producing broker
+**Speaker 1** [04:22] they should only see their own submissions anywhere though shouldn't they
+**Speaker 1** [04:28] okay
+**Speaker 1** [05:16] We can see it. We can see it in live. But the weird thing is, I think you raised a ticket on it, Alex. I think it might have been Dave actually.
+**Speaker 1** [05:24] Once we click into facility manager, we can't find our way back to live Xtrade without logging out and then logging back in.
+**Speaker 1** [05:43] Yeah.
+**Speaker 1** [07:17] What
+**Speaker 2** [07:18] was that country bit that you had up then Luca? That's country 76. What was that all about?
+**Speaker 2** [07:29] right
+**Speaker 1** [07:35] that's Brazil I think that's really strange that I know that because I've just done some data on it I think that's Brazil
+**Speaker 2** [07:53] So what does that do though? Does that say that, so that excludes countries so it won't appear if the whoever insured reinsures located in there? And you can take multiples, presumably.
+**Speaker 2** [08:11] Okay.
+**Speaker 2** [08:22] So how do you then, as we're here, how do you then get out of this screen to get back to the main dashboard to get a quote?
+**Speaker 2** [08:31] Because if we click on that little that one it takes us back to the main screen.
+**Speaker 2** [08:36] So the main, oh it doesn't take us there does it, Ems?
+**Speaker 2** [08:41] I'm
+**Speaker 1** [08:41] just looking into live just to see what it does on mine.
+**Speaker 1** [08:46] So
+**Speaker 2** [08:47] basically, I think it takes us back to the list of all the line slips and once we're there we're stuck.
+**Speaker 2** [08:52] And it's quite a challenge.
+**Speaker 2** [09:05] that's cheating
+**Speaker 2** [09:10] so
+**Speaker 1** [09:20] yeah it took me back to log in to authenticate get another code and
+**Speaker 1** [09:25] and then it's taken me back to facility manager yeah
+**Speaker 2** [09:27] so as soon as you go back in it just takes you back to where you came out which really doesn't help
+**Speaker 2** [09:34] yeah like that
+**Speaker 2** [09:37] yeah
+**Speaker 3** [09:38] yeah
+**Speaker 3** [09:49] yeah
+**Speaker 3** [10:06] So
+**Speaker 2** [10:07] this is an interest. So on this point here, there should be.
+**Speaker 2** [10:12] So if you go to your create client or add new, whatever it is.
+**Speaker 2** [10:18] OK, so you've got the GXB code and that's a man. Are those Hibble and Lux codes mandatory?
+**Speaker 2** [10:26] Can we.
+**Speaker 2** [10:31] I suppose, actually, no, I don't think about it. It's only going to be you, me, maybe somebody else, isn't it? So we'd like to think that we're fairly disciplined in only putting people on who exist in the first place in the network.
+**Speaker 2** [10:45] But we also will need to have that provision where it's a direct risk. So the insured and reinsured,
+**Speaker 2** [10:53] depending if it's a direct insurance or a reinsurance,
+**Speaker 2** [10:57] those entities will need to be set up in the same way as you're setting up placing brokers. And they're still a client. Sorry, a client.
+**Speaker 2** [11:06] And so these will be.
+**Speaker 2** [11:09] OK.
+**Speaker 2** [11:19] But that should should give us more structured data as well, shouldn't it, because then we're just clicking on one in short and then it's giving everything as opposed to where people, you know, they've got dots in different place or a space where there isn't a space or whatever.
+**Speaker 3** [11:32] Yeah.
+**Speaker 2** [11:33] Provided they should only be able to where when it's direct to Heldon, so that box has been They should only be able to select an insured, if it's an insurance or a reinsurance, it's a reinsurance name from a drop down list. They should not be able to manually enter that.
+**Speaker 2** [11:53] Yeah.
+**Speaker 2** [12:05] Yes. So otherwise, otherwise we're going to be a bane of your life. And also quite often a broker only thinks about it as they're entering a risk, so they want it done now so they can carry on their user journey.
+**Speaker 2** [12:25] by how many clients we have direct certainly reinsured i don't think it'd be 100 necessarily i think reinsured's up to 100 would you say ems yeah i don't think it's most of our business is transacted through a third party agent yeah So we don't actually have a vast amount, but we had a breach in aviation because somebody had done the direct to help and the client hadn't been set up in the system.
+**Speaker 2** [12:55] I would say. I don't know, maybe 25 of each, maybe a few more direct insurances. Is there any way you can ascertain names?
+**Speaker 1** [13:05] I'm just doing a count on the number of distinct reinsured names that we've got.
+**Speaker 1** [13:15] And we have, so 2025 we had 229, 2026 so far we've got 168, 24 we had 200.
+**Speaker 1** [13:29] I agree in short names.
+**Speaker 1** [13:33] Okay.
+**Speaker 1** [13:38] Yeah, insured was 768 in 2025. Yeah, those
+**Speaker 2** [13:43] are direct to Howden though, I presume, are they?
+**Speaker 1** [13:48] No, not necessarily. No, they're reinsured and insured.
+**Speaker 2** [13:51] So they could be via a third party in many instances.
+**Speaker 2** [13:56] So anyway, let's say, I don't know, max probably 50 of each at the moment.
+**Speaker 2** [14:01] But our target is to get more direct business because then we get to trouser all the commission and I'd share with anybody.
+**Speaker 2** [14:11] Because we greatly broke us.
+**Speaker 2** [14:18] And that address information, I mean, in X-Train 1, we had that search feature and it just never worked really, did it? You know, where you could start typing the name of an address and it would bring up all the other fields.
+**Speaker 2** [14:51] Okay. Okay.
+**Speaker 2** [15:00] Okay.
+**Speaker 2** [15:39] Okay. yeah I mean I don't know can we bulk upload as well so if we were to fill in the spreadsheet with all of our bits and pieces in which I guess we could probably pull from somewhere
+**Speaker 2** [15:50] and then just do it including Hibble and the Lux code or maybe James Mortimer could provide that and then we just do a bulk upload of everything as opposed to piecemealing it yeah absolutely
+**Speaker 2** [16:03] And in terms of so going back to underwriters then setting up facilities and all that fun stuff.
+**Speaker 2** [16:08] How do we go about following market access? So the delegated markets, for example.
+**Speaker 2** [16:17] How do we then make sure that they're set up so they receive emails with the declarations and also have access to the reporting?
+**Speaker 2** [17:03] i can't ace do that for you
+**Speaker 1** [17:27] yeah i was gonna ask for that actually because at the moment I don't know about you Alex but I've completely lost track of who's got what and who's asking for what and who's saying they have it don't have it can't see this can't see that.
+**Speaker 2** [17:40] Yeah from both the two aspects one from a user perspective and also from an underwriter perspective. Yeah.
+**Speaker 2** [17:48] Yeah,
+**Speaker 1** [17:49] so that would be good. If we could get a download where we could sort of go, okay, so star, these people have got access, these people get copy decks, these people, whichever. So we can just sort of go through and cross-check it all would be good.
+**Speaker 3** [18:03] Yeah.
+**Speaker 3** [18:12] Perfect.
+**Speaker 3** [18:23] Okay.
+**Speaker 2** [19:06] What's Strapi's replacement?
+**Speaker 2** [19:11] Oh sorry that's right sorry.
+**Speaker 2** [19:15] Petiting manager.
+**Speaker 2** [20:27] so what what goodies are going into the next thursday release not next thursday but the next thursday release which you have every three weeks
+**Speaker 2** [20:39] it is this thursday
+**Speaker 2** [21:03] So on the subject of client manager, I think you mentioned this to me last week. So at the moment when we set up a new client to aviation, for example, we go to our MSCP team. Don't ask me what it stands for, I don't know.
+**Speaker 2** [21:21] They do all the onboarding. What would be amazing is as part of their journey, when they finished, you know, the compliance checks and everything else and that client is then good to go, is then to send an email to whoever you guys to then set them up in XTrade immediately, as opposed to waiting for us to then have to go and ask it. And then, you know, potentially causing another breach. Is that something that could be possible?
+**Speaker 2** [21:52] Yeah.
+**Speaker 2** [22:01] Possibly. I mean it's something, I don't know who heads up the SCP team but it might be worth, I don't know, Jill or whoever or Paul Hilliard discussing it with them.
+**Speaker 1** [22:11] Jill Stecklenburg or whatever her name is.
+**Speaker 2** [22:13] Oh, she's changed her surname now and she got married.
+**Speaker 2** [22:17] I
+**Speaker 1** [22:18] think it might be her. It's
+**Speaker 2** [22:20] not.
+**Speaker 2** [22:31] Yeah. Well, it takes about three or four days sometimes, doesn't it? Depending on client request loads.
+**Speaker 1** [22:39] Jules Paradox. Is that actually?
+**Speaker 2** [22:43] Anyway, I will leave that with you too. It's just a thought that Ems came up with. It just be one less, one more automated thing and one less request thing for the various business units to have to think about.
+**Speaker 2** [23:02] So you.
+**Speaker 2** [23:26] So one of the part of the endorsement process would be for us to have the ability to extend a policy period.
+**Speaker 2** [23:37] So we will be able to do that, will we?
+**Speaker 2** [23:54] Oh, that's right. Yeah, you showed this to me the other day, didn't you? Yeah.
+**Speaker 2** [24:04] Yeah, that makes sense.
+**Speaker 2** [24:13] That's right, yeah, because we were saying it'll be, depending on what the leader agrees, we'll then dictate thereafter what following market agreements required. That's right, sorry, I do remember having that conversation last week now.
+**Speaker 2** [24:27] And it was recorded, wasn't it?
+**Speaker 2** [26:04] That's rude, isn't it?
+**Speaker 2** [26:24] Talking of searching and downloads, did you have any questions on the, not the reporting download, but the actual main download from the initial Xtrade screen? You know, you've got the export capability. The
+**Speaker 1** [26:38] data export.
+**Speaker 2** [26:39] Yeah.
+**Speaker 1** [26:41] Yeah, it's just.
+**Speaker 1** [26:43] I find it quite hard to use and I don't know if that's user error because when you seem to select the options, they come over as a different column.
+**Speaker 1** [26:58] And it just makes, so if you're looking at... aircraft type for example they all it just makes the report huge um and what we would like is or what i would like is something like we had our next trade one where we could just export the data and it will give you a row per aircraft basically um with all the insured details and everything
+**Speaker 1** [27:30] um
+**Speaker 1** [27:39] all right
+**Speaker 1** [27:47] What
+**Speaker 2** [27:47] do you want to do it live? There's no reason why you can't do it in aviation live is there? I mean do you want to have you got live open for aviation?
+**Speaker 1** [27:56] I probably need to log in because I've got the facility manager but I do I can do that I'm fine.
+**Speaker 2** [28:01] So if you want to share your screen and you can drive under guidance shall we say.
+**Speaker 3** [28:18] okay
+**Speaker 3** [28:21] it's going to my code
+**Speaker 3** [28:28] and
+**Speaker 2** [28:28] share that with anybody else they might sneak in and steal all of our data.
+**Speaker 1** [28:32] Do some testing for me.
+**Speaker 1** [28:38] All right, so I've got, I've created a save report,
+**Speaker 1** [28:43] but even that, sorry.
+**Speaker 1** [29:00] Okay.
+**Speaker 1** [29:07] Okay. Okay. So if we say hello.
+**Speaker 1** [29:11] Okay.
+**Speaker 3** [29:17] okay
+**Speaker 1** [29:23] does that just select
+**Speaker 1** [29:27] everything okay and then export
+**Speaker 1** [29:43] have we done all I mean it's probably going to work right yeah okay
+**Speaker 1** [30:03] okay
+**Speaker 1** [30:05] Okay.
+**Speaker 1** [30:30] Ah, okay, this looks better.
+**Speaker 1** [30:56] Okay, so... It's
+**Speaker 2** [30:58] an insured name. Do you know which aircraft is associated with which insured?
+**Speaker 2** [31:03] It's just soothed about.
+**Speaker 2** [31:14] Okay.
+**Speaker 1** [31:20] Yeah, I think, well, UMR and the name would be good. I don't know if you agree with that, but yeah, they're the two sort of things, because then I can sort of cross-check on global and things like that to make sure we've processed.
+**Speaker 2** [31:33] And also to show the actual country name, not the code, which obviously we talked about earlier.
+**Speaker 1** [31:40] Yeah, I think we've...
+**Speaker 1** [31:43] I told you it was Brazil. I remember that from last week. It's the only thing I have remembered.
+**Speaker 1** [31:50] Okay. And things like this where we've got a currency and then a currency name. Can we show it?
+**Speaker 1** [31:59] I don't know if it's even possible. Or as a, so it's like a financial. So I can then, because at the moment I'll need to formula it to remove the US or separate it. Yeah, in a different column.
+**Speaker 1** [32:11] Oh, yes, okay.
+**Speaker 1** [32:19] Okay, so.
+**Speaker 1** [32:24] Yeah.
+**Speaker 1** [32:28] Okay. I wonder if it's done it on this side.
+**Speaker 1** [32:37] Yeah, we've got currency separations here.
+**Speaker 1** [32:48] Yeah, so what would be, I think what would be good is if we can kind of almost merge the two, so we have the aircraft information along with the insured name and the policy ref, so I can then pull the data from that one source.
+**Speaker 1** [33:12] yeah perfect
+**Speaker 1** [33:40] yeah Yeah.
+**Speaker 1** [33:50] yeah
+**Speaker 1** [33:53] okay okay I'll give that a go today because I've been working on something else um which I could use this so I'll have a play with that and back
+**Speaker 1** [34:17] um
+**Speaker 1** [34:22] Okay.
+**Speaker 1** [34:41] Okay. Anywhere from an underwriter?
+**Speaker 1** [34:49] Okay.
+**Speaker 1** [34:55] okay well so it what if i was to go into the risk itself right okay
+**Speaker 1** [35:04] yeah if we yeah that would be really helpful
+**Speaker 1** [35:21] okay the audit here, that's basically an export of this, isn't it?
+**Speaker 2** [35:27] Can you export that as per risk?
+**Speaker 2** [35:31] As opposed to go through.
+**Speaker 2** [35:33] I could just do a screen snip.
+**Speaker 1** [35:35] Yeah, I mean, it's the same thing, isn't it? It's the idea. So if you know your.
+**Speaker 2** [35:40] Yeah, I'm thinking I'm thinking more from an underwriter's perspective. So if they wanted to do it, especially when we get to verticalisations and use the chat to function more.
+**Speaker 2** [35:51] how we could then just download that chat for that one risk without them to go through this process individually so we can then just dump that on file
+**Speaker 2** [36:08] Probably not. I would imagine it more as a,
+**Speaker 2** [36:11] you know how, it's going to sound a bit basic, but you know how play scripts are written where they have the title of the character,
+**Speaker 2** [36:21] their lines.
+**Speaker 2** [36:23] I'd kind of almost expect it to say it's something along those lines.
+**Speaker 2** [36:27] So you'd say, you know, they said, then he said, and then she said, and then he said,
+**Speaker 1** [36:32] Like a chatting board, basically. Like if you were to have a conversation with somebody about your car insurance, and then you can explore consultation after.
+**Speaker 2** [36:42] That's what
+**Speaker 1** [36:42] I'm thinking. I think we have got, I mean, presumably there isn't much on there, but on the... Hang on, go back to my data export. There is chat log here.
+**Speaker 2** [36:54] Yeah, but I didn't want to have to go in through this process. So we could just do it at risk level.
+**Speaker 1** [37:00] OK.
+**Speaker 2** [37:19] OK. Okay.
+**Speaker 1** [37:21] What was the other thing we had a question on now in the facility manager, I think it was the max limits and stuff.
+**Speaker 1** [37:34] Is that something we spoke about last week or am I going mad? So if we were to say, for example,
+**Speaker 1** [37:41] this specialty MGA,
+**Speaker 1** [37:44] where do we see, because their max hull, I think it's like a million and nine million or something like that for hull and liability. So is that in rules?
+**Speaker 1** [37:53] Because when we go in here, there aren't any.
+**Speaker 1** [38:02] Okay.
+**Speaker 1** [38:19] Yeah, I think we unpublished it because we were looking at it, weren't we, to try and work out. Because I think these are ones that have been reported. I
+**Speaker 2** [38:30] was going to say, this came across from the migration, didn't it?
+**Speaker 1** [38:32] Yes.
+**Speaker 1** [38:36] So, I think we've got a lot of questions. 26 isn't it so if we do
+**Speaker 1** [38:51] so these are being used
+**Speaker 1** [39:18] should be that's a bit worrying isn't it
+**Speaker 1** [39:28] But what? I don't understand what that is. What rule? What is the rule there? Greater than?
+**Speaker 1** [39:37] We've
+**Speaker 2** [39:38] got a.
+**Speaker 2** [39:42] I don't even.
+**Speaker 3** [40:10] yeah
+**Speaker 3** [40:24] Okay. So
+**Speaker 2** [40:25] it is there, but just we can't see it.
+**Speaker 1** [40:28] Okay.
+**Speaker 1** [40:33] Yeah, because I think that's one of the things we were going to do, or I was going to do, I was to go through, check the migrated line slips, change the name so they're all showing on the reporting as we need them to, and check the visibility rules.
+**Speaker 3** [40:46] Yeah.
+**Speaker 3** [40:51] Yeah.
+**Speaker 3** [41:01] This
+**Speaker 1** [41:02] is probably, I don't know if you'll be able to do this, but is there a way we can get a download showing the facility and the rules as such, so the max fix wing, max race wing, brokerage,
+**Speaker 1** [41:15] just so we can sort of run through it and spot any.
+**Speaker 1** [41:31] we then use Claude to put it into a spreadsheet for us
+**Speaker 1** [41:40] just thinking it might be easier to run through a sort of a spreadsheet because I've got a spreadsheet which I keep which shows me our max hole max lives for each line slip and then I could maybe use Claude to compare the two and spot if there's any any errors
+**Speaker 1** [42:48] One other, with the endorsements, I don't think, are they using endorsements yet? Are they live?
+**Speaker 1** [42:55] They're
+**Speaker 2** [42:55] kind of live, but they're still ongoing, shall we say?
+**Speaker 1** [43:01] Maybe speaking then future-wise, if we were to endorse a new aircraft using the endorsement feature on Xtrade, would that then show in the reporting once it's bound? So would the aircraft... report on or would it be inception only?
+**Speaker 1** [43:28] Okay, so if the endorsement was bound and agreed, that new aircraft, it would include that on the data. Okay, that's good to know.
+**Speaker 1** [43:39] Perfect.
+**Speaker 1** [43:42] Okay, I think that's all my questions. I don't know if you've got anything else.
+**Speaker 2** [43:48] Not today for a change.
+**Speaker 2** [43:54] Mm
+**Speaker 3** [43:55] -hmm.
+**Speaker 3** [44:15] Yeah, that's good.
+**Speaker 3** [44:18] Excellent, thank you.
+**Speaker 3** [44:21] Cool, thank you very much.
+**Speaker 3** [44:25] Thanks, Luca.
+**Speaker 3** [44:27] See you soon.
+**Speaker 3** [44:29] Thank you. See you.

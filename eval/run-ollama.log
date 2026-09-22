@@ -1,3 +1,11 @@
+skip offline-placements/ollama
+== producing-broker / ollama
+== amendments-redesign / ollama
+== energy-liability / ollama
+== cyber-bulk-upload / ollama
+== facility-manager / ollama
+== images / ollama
+== contract-standup-17 / ollama
 # Digest → ticket recall
 
 Ground truth: tickets the user filed within two days of a Trace-recorded meeting.
@@ -8,7 +16,7 @@ Score: yes = 1, partial = 0.5. Extras = proposals matching no filed ticket (not 
 | amendments-redesign | claude-team | 2/7 | 7 | 289676, 289677, 289678, 289679 |
 | amendments-redesign | claude | 0/7 | 0 | 289674, 289675, 289676, 289677, 289678, 289679, 289680 |
 | amendments-redesign | ollama | 0.5/7 | 2 | 289675, 289676, 289677, 289678, 289679, 289680 |
-| contract-standup-17 | claude-team | 0.5/5 | 7 | 290341, 290343, 290344, 290345 |
+| contract-standup-17 | claude-team | judge failed |  |  |
 | contract-standup-17 | claude | 0/5 | 0 | 290341, 290342, 290343, 290344, 290345 |
 | contract-standup-17 | ollama | 0/5 | 2 | 290341, 290342, 290343, 290344, 290345 |
 | cyber-bulk-upload | claude-team | 0/1 | 3 | 289471 |
@@ -32,6 +40,7 @@ Score: yes = 1, partial = 0.5. Extras = proposals matching no filed ticket (not 
 
 | summariser | recall | extras/case |
 |---|---|---|
-| claude-team | 10.5/30 = 35% | 5.0 |
+| claude-team | 10/25 = 40% | 4.1 |
 | claude | 6/30 = 20% | 1.5 |
 | ollama | 5.5/30 = 18% | 1.8 |
+

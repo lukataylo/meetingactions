@@ -1,0 +1,158 @@
+**Speaker 1** [00:25] Sure,
+**Speaker 2** [00:25] sure, take your time, not urgent.
+**Speaker 1** [00:41] Okay, yeah.
+**Speaker 4** [00:52] No, it's just that it's been cloudy for the first time.
+**Speaker 4** [00:59] I'm in a slightly different room as well. Well, this week.
+**Speaker 4** [01:04] In my spare bedroom because we had the builders in.
+**Speaker 4** [01:09] Back in the shed.
+**Speaker 4** [01:17] actually what has happened is all of the shit that we've taken out of the house from the buildings are in it behind me including two lights and their both on so that's what it is they should press day
+**Speaker 4** [01:43] so
+**Speaker 2** [05:30] no no for follow follow um all good for now
+**Speaker 2** [05:40] I
+**Speaker 4** [05:41] was going to say first like I enjoy his benefit the two ways we thought of doing those agreement parties with either you pick every agreement party you pick from every agreement party when you do an endorsement I guess the only thing we should add like I think about it now is if there's only one
+**Speaker 4** [06:05] facility or it's the simplified workflow.
+**Speaker 4** [06:09] We should skip that and just go to the lead.
+**Speaker 4** [06:14] But the alternative was you like set all this up when you're binding the risk to say, well, these type of insurers go to these and these type of amendments go to these insurers.
+**Speaker 4** [06:24] Cancellation goes to these two.
+**Speaker 4** [06:26] I don't think that anyone's going to do it and we'll just get requests at the top post.
+**Speaker 4** [06:33] It bound go, oh I got my agreement parties wrong when I bound it, now I can't do this amendment.
+**Speaker 4** [06:39] So I think this is the most sensible way.
+**Speaker 5** [07:00] yeah we have a future pair underwriter to participate in the amendment flow
+**Speaker 5** [07:07] for manual follower underwriters
+**Speaker 5** [08:46] On cancellations, I just want to ask, do we keep the current cancellation flow in form, or is it something...
+**Speaker 5** [09:14] Yeah, okay. And just another problem we had
+**Speaker 5** [09:21] with the new amendment form is
+**Speaker 5** [09:24] that situation where you now have
+**Speaker 5** [09:28] essentially two places to amend fields. So one is
+**Speaker 5** [09:32] what do we do with the so we build the feature originally so that you can amend things directly on the risk form any any field you want uh except the ones we in the definition mark is non-amendable
+**Speaker 5** [09:51] but now since we introduced the amendment form it's kind of two places where you can map something to the amendment form and then from amendment form to the amendment offer form and that's how it can end up back in the contract so how do we fight against that what's like the the idea for that do we even need that amendment form now
+**Speaker 5** [10:23] okay
+**Speaker 5** [10:45] So you would lock everything on the left and just keep the...
+**Speaker 5** [10:54] Could work for that, but I think the... the whole summary of changes before you submit is driven against the contract form. So I think Georgi can maybe give a comment on that. But if you don't allow changes in the contract form on the left, you lose the ability to have that summary of changes before you submit. So either that or it would have to be reworked. Totally.
+**Speaker 5** [11:30] Am I right, George?
+**Speaker 5** [11:33] Yeah, yeah.
+**Speaker 5** [12:00] Yeah, the diff track form.
+**Speaker 5** [12:06] and a question on other types of like simpler types of endorsements amendments uh so the extension one and then avoid one are we sure that those do not have to be like dynamic forms can we just have a model with reason suppressed by and that's it or we could potentially. There's a
+**Speaker 4** [12:31] different pricing logic for all of them.
+**Speaker 4** [12:35] Different reasons you'll catch on different products. Some people want different amounts to pay for different reasons, additional data, additional premiums.
+**Speaker 4** [12:43] We can try and do it as a model. I know the exact next ticket will be, can you customize it?
+**Speaker 4** [12:54] Yeah,
+**Speaker 5** [12:55] just thinking would that mean that we have to introduce, well we have one, let's say we have one for endorsement, do we need separate form for extensions for void amendments?
+**Speaker 5** [13:13] I don't
+**Speaker 4** [13:15] know if it needs to be a separate if we could combine them into a single
+**Speaker 4** [13:20] file it might make the overhead a bit easier but I think they're going to be being separate for the business they're all completely separate things
+**Speaker 4** [13:42] I don't know
+**Speaker 4** [13:46] In Luca's defense, he archied for this as well when we were talking about it internally.
+**Speaker 4** [13:53] So he tried for you guys, but everyone else is like, nah, more config.
+**Speaker 6** [14:54] So, this question, this like amount changes, those are like some fields from the forum, right?
+**Speaker 6** [15:02] Yeah, okay. Okay, you're just playing that out. Okay.
+**Speaker 7** [15:29] Yeah, I mean, like we are going to have a separate JSON files, yeah, you can have any placeholder. So it's going to work on the same way like for the offers and all other,
+**Speaker 7** [15:42] yeah, and all other documents.
+**Speaker 6** [15:44] So, yeah, we don't see any issue there.
+**Speaker 5** [16:00] No, just the only thing that's still concerning to me is that field locking and how we're going to prevent having two forms where you can amend things. So what if someone comes in and says, I'm here to amend only the address fields, but I'm
+**Speaker 5** [16:23] what's like the side where they can do it can they do it on the contract form or we need to map all the fields to the amendment form and then they can do it from there you know
+**Speaker 5** [16:33] that's
+**Speaker 5** [17:09] so we would kind of move the responsibility to the conflict team to pay attention to what they map to the amendment form and what they lock for editing those kind of things
+**Speaker 7** [17:27] Maybe somehow build that contract form. So essentially product definition is like the parent and these are all children.
+**Speaker 7** [17:40] So basically if you need something, so right now you can modify the contract form directly, which is like product definition, product definition fields, and tables and everything.
+**Speaker 7** [17:50] So if we are going to introduce more JSON files for each type for a minute,
+**Speaker 7** [17:57] you have some mechanism to copy all the fields from product definition.
+**Speaker 7** [18:06] And then if you have some additional fields, it's fine.
+**Speaker 7** [18:11] So that way you don't need to map anything. I mean, when we generate an amendment, we have the same IDs and everything, but like a different form, you know, what I mean.
+**Speaker 7** [18:22] So like canonical model, you know, for the amendment definitions and the canonical model is actually like the product definition. Does that make sense now? Yes?
+**Speaker 7** [18:35] Let's say that we introduce,
+**Speaker 7** [18:39] okay, right now we have a cancellation definition.
+**Speaker 7** [18:41] Cancellation is a type of an amendment.
+**Speaker 7** [18:45] Then in cancellation, you have all the fields from the product definition.
+**Speaker 7** [18:50] In extension, you have all the fields from product definition. In capacity, you have all the fields from product definition. So in every JSON.
+**Speaker 7** [18:59] and then if you need, you have some additional fields and so on. Or if you don't need, you can have all the fields or some fields that you need. And then we can match by ID. The ID is the same, it's just a different form. Then we can copy the values from the contract, but this is essentially a different form. and different JSON file. And then you have everything, you can make changes, we can compare the values and everything because the IDs are the same.
+**Speaker 7** [19:31] I'm just trying to figure out how this is going to look like, like Gladco said, if we don't want you to lose that possibility to modify the contract. So I'm just thinking how we can design that.
+**Speaker 7** [20:24] Yeah,
+**Speaker 7** [20:27] I mean, if we are going to use like separate JSON files, then, and we need those fields from the contract, then like, I think if we can build something in a product builder
+**Speaker 7** [20:39] Yeah, you can then generate the JSON file pretty easier.
+**Speaker 7** [20:44] And then everything is separate. If you want to log the field or something, you have separate definitions. So you don't need to combine anything like we do right now in product definition. Like if the contract status is bound, then I want to see this section because then if it's bound, then that means that you're going to create an amendment and you want to see that section or fields only on amendment, so you don't need all those kinds of things in product definition. So product definition is clear, so that's like one flow, and then you have separate JSON files and the same set of fields and everything or some subset from the product definition in the JSON file. And then you can write from scratch like new conditions,
+**Speaker 7** [21:20] block,
+**Speaker 7** [21:22] conditions or anything else.
+**Speaker 7** [21:25] And then if you need to compare to the contract, we have what are, we can find all the same IDs,
+**Speaker 7** [21:34] all the IDs that are the same in product definition and let's say in extension, and then you can have a summary of your changes.
+**Speaker 7** [21:43] I don't know,
+**Speaker 7** [21:45] just thinking out loud, but yeah.
+**Speaker 7** [21:55] just so you know any like mapping reverse mapping and like if you have if you have some field that's like the same
+**Speaker 7** [22:05] like some field in a product definition, you know, and then you map that, then how we're going to compare with them. We need to map things like to find what the source is, what the target is, and to compare and everything. And if we have like the same, if we have like separate JSON file, I think maybe we can copy. I mean, we can think about that.
+**Speaker 7** [22:27] How
+**Speaker 5** [22:27] would you keep them one-on-one if it's like a copy of whenever you change something, it PD would also need to add it here, right?
+**Speaker 7** [22:37] Yeah, yeah, right. That's a mechanism that we need to build, yeah. P-thing models kind of stuff.
+**Speaker 7** [22:49] yeah basically like if you add some some new field in a pd and bundle version then basically because these are going to be like um like uh all of these are like children for product definition you need to update all of them as well
+**Speaker 7** [23:08] to add that field or remove the field you know So when you bound the version of product definition, bound the version of these JSON files,
+**Speaker 7** [23:19] and apply the same change in these files. If that field is in common for product definition and extension definition.
+**Speaker 7** [23:30] Yeah,
+**Speaker 1** [23:31] yeah,
+**Speaker 1** [23:32] yeah.
+**Speaker 5** [24:01] yeah maybe maybe maybe a call with conflict team also to just wrap up that around the use cases of those field lockings and for everything related to that
+**Speaker 5** [24:19] then probably break it down per amendment type and then
+**Speaker 5** [24:25] someone can take over this work.
+**Speaker 5** [24:41] Yes, probably.
+**Speaker 5** [24:45] There's a lot of things that are similar here,
+**Speaker 5** [24:49] so there will be a lot of work for...
+**Speaker 5** [24:54] Yeah, we can just have some basic field structure for each of these definitions and then have someone that if the selection is not in scope, or that first with the no-in-end, you can switch to the capacity one, how that looks like when you want to.
+**Speaker 5** [25:59] but what would be something that we have to do right away what do we start with here
+**Speaker 5** [26:25] No, no, it's fine. Just OK.
+**Speaker 5** [26:33] We just need to wrap up the whole flow once again and how do we want to use those new amendment forms like how to know which things we want to potentially change using them.
+**Speaker 5** [26:54] Is it only the extension fields or is it any other field that's going to be there and is going to change the risk, you know, on that form or the usual risk form?
+**Speaker 5** [27:10] That's like still a bit, to me, that's a bit confusing.
+**Speaker 5** [27:17] Okay.
+**Speaker 5** [27:32] and
+**Speaker 7** [27:33] look about what i was thinking maybe on like some example so if you have like a vehicle
+**Speaker 7** [27:40] and then you have like, I don't know, like a collar engine, tires or something. And then you can have some, you know, like concrete vehicle, let's say type vehicle like car. And then you have everything from vehicle and maybe something specific, you know. So the same approach goes here or like when you have like a person, you have like a name, last name, I don't know, or something else. But when you have driver, you maybe need like a license registration, you know, number, whatever. That is something specific. So same goes for the product definition. You have everything that is in common for the product definition and extension or endorsement. I mean, amendment definition.
+**Speaker 7** [28:19] But you can have some additional fields and, you know, other stuff. So that's like kind of approach that I'm thinking like a parent-child, you know, like a base class and then some class that inherits everything from the base and adds something new.
+**Speaker 7** [28:54] Yeah, that's fine. Then you can add only those, and that's all.
+**Speaker 7** [29:00] The IDs are the same and everything, and you just add only those. and you modify them and if the ID is the same, we map that back to the contract, you know, like we do right now. So you have a change, like inception date was that one. On contract now it's a different one on void or, you know, but yeah, we can discuss that further, yeah.
+**Speaker 7** [29:40] yep
+**Speaker 1** [29:40] thank you
+**Speaker 5** [30:20] if you had any like back and forth on this spike with deviation because i saw it's last updated in june uh is it still like clear that they still want the same
+**Speaker 3** [30:56] yeah
+**Speaker 3** [32:36] I was
+**Speaker 8** [32:37] actually speaking to Dylan about this, trying to get my head around it, where this sits. We're discussing whether this is near different verticalisation. I think you might have had that chat with me yesterday.
+**Speaker 8** [32:46] My interpretation of the multiple needs aspect is just around different terms, so where we've
+**Speaker 8** [32:52] one lead on a set number of terms. There could be another insurer that gets involved
+**Speaker 8** [32:58] on a separate set of terms and they'd lead those terms whether they'd have their own followers or not, I don't know.
+**Speaker 8** [33:04] But that's kind of my understanding of where we'd have those multiple leads to support verticalisation
+**Speaker 8** [33:11] and support different terms.
+**Speaker 8** [33:22] i think i think it is still very much line step builder um i think that's alex's expectation i think jill wants to validate that with him next week um so i've said i've updated with how we get on
+**Speaker 8** [33:35] after this call
+**Speaker 8** [33:44] I think options, what we could potentially do to deliver that, how that might look. That's something I've been trying to do, is visualise what it might look like. Like you said, we'll invite them in terms of that flow, the journey.
+**Speaker 8** [33:59] What point are those leads added? How do they display?
+**Speaker 8** [34:03] That sort of thing. So I think just discussing, I guess, what the options you've got, how that might look. I'll go from there, really.
+**Speaker 8** [34:26] don't go with that that was kind of my interpretation of it it could be very it could be wrong so I think your understanding might be closer giving your closeness to this
+**Speaker 8** [34:42] doing
+**Speaker 5** [34:43] it in it
+**Speaker 3** [34:43] yeah yeah go on sorry
+**Speaker 3** [34:50] yeah
+**Speaker 5** [35:20] Yeah, I think maybe we need some workshop with them to go through the flow from UI perspective and then they say what they want additionally. Because we now can, you can go now and submit to multiple facilities, each of them being a lead at that point and then you get offers from all of them, you have free. you can have three facility leads and separate terms, separate offers for each of them, but then you can just decide for one of them to go ahead and accept it. And then from that point on, you add all the facility followers to cover the rest of the percentages, right? And then you can again add other facilities, other individual insurers, but again as followers. So,
+**Speaker 5** [36:07] That was what I wanted to find out. Do they now want to maybe accept multiple sets of multiple leads and then have multiple sets of their own facility followers to participate and maybe bind? I'm not sure, you know.
+**Speaker 5** [36:25] that's what I wanted to find out and then we would know the impact on the code base and everything because our code base is full of those conditions, you know do you already have a lead? Do you have if you already have a lead that's accepted you cannot have another one and then, you know everything goes around the story about one lead being bound and then everyone else is a follower. So that's something that we would like to find out to know the scope of the work and to plan to design technical implementation. - Thank you very much. Yeah,
+**Speaker 8** [36:58] I'm just thinking actually as well, I've popped into my head now. I'm sure some of the XS52 facilities have got two leads, I think Starr and Lancashire.
+**Speaker 8** [37:08] I think so. Yeah, you can. What's the differentiation between that and what we're going to do, I suppose.
+**Speaker 5** [37:15] Yeah, I think you can, even now you can have multiple leads in a facility and you can, they will both be asked to provide the offers.
+**Speaker 5** [37:27] Yeah. but you then still need to decide who's going to be the lead. Let's say you have Atrium and Lancashire as leads and you get two offers, they are in the same facility and you get offers from two of them, you have to still decide for one of them. Let's say you go ahead with Lancashire and then when you add followers, you can call Atrium to be a follower.
+**Speaker 5** [37:52] just to participate as a follower, even though they are defined as the lead in a facility in this in Strapi, their offer was not accepted by the broker and they can appear now as a follower, but they cannot be like two pound leads, let's say two accepted leads. So you can still have as many leads as you want in a facility, but only one of them would be accepted. And then the rest of them can appear as followers on the contract. They're all in the contract will be followers. if they weren't accepted as a lead.
+**Speaker 8** [38:23] Yeah. On that topic, we've got that can lead individually checkbox, haven't we? As a setting. Just like, hey, just wondering what that does. Yeah. It doesn't do.
+**Speaker 5** [38:35] Yeah. Okay.
+**Speaker 5** [38:37] They want to show up outside the facility on the first step, or they can just show up as a follower on the third step later on. But yeah, that's what you control with that.
+**Speaker 8** [38:51] Yeah, okay. Sounds like a session with Alex then.
+**Speaker 8** [38:57] Just to clarify exactly what all the expectations
+**Speaker 3** [39:00] here and how that definition we've got.
+**Speaker 3** [39:47] Yeah,
+**Speaker 8** [39:48] just before we go then, because the ticket you linked also mentions the security panels, doesn't it? So I wonder if the underlying requirement is almost to have multiple panels. So if you have got this concept of a co-lead, you have a panel for lead A and their followers, and a panel for lead B.
+**Speaker 8** [40:07] I think we still absolutely need to do that elevation. I just wonder if that's the other element to this.
+**Speaker 8** [40:13] I mean, the main requirement is that, is to have multiple panels where we do have more than one read in play.
+**Speaker 8** [40:25] yeah okay yeah um i'll put i'll put some time in for next week then and it's i think alex is there until monday tuesday wednesday um is that a kogo orange or a bean i was gonna say do you Yeah,
+**Speaker 5** [40:40] it's fine. If you can also invite Goran there just to be from the side on that meeting, I'll be off, but yeah, if you can join.
+**Speaker 5** [40:50] Okay, cool.
+**Speaker 8** [40:51] Yeah. All right, we'll put that time in then.
+**Speaker 8** [40:54] I hopefully have more of an idea of what we need to do.
+**Speaker 8** [40:58] Yeah.
+**Speaker 8** [41:02] yeah yeah I thought you had it all kind of in your head Luke giving that the link and the ticket and stuff this is just a quick this is what we need to do so we're going to do it
+**Speaker 8** [41:16] definitely get it better get it right that's all that matters isn't it so yeah
+**Speaker 8** [41:22] Sweet.
+**Speaker 1** [41:23] Cool. All right. Thanks all. See you. See you later.
