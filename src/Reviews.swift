@@ -130,7 +130,7 @@ struct ReviewRow: View {
             }
             if pending {
                 HStack(spacing: 8) {
-                    Button("Approve") { store.set(item, status: "approved") }.controlSize(.small).keyboardShortcut(.defaultAction)
+                    Button("Approve") { store.set(item, status: "approved") }.controlSize(.small)
                     Button("Changes…") { mode = mode == "changes" ? "" : "changes" }.controlSize(.small)
                     Button("Send to…") { mode = mode == "send" ? "" : "send" }.controlSize(.small)
                 }
