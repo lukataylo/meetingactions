@@ -41,9 +41,12 @@ process_dir() {
   fi
 
   log "transcribing $dir (${secs}s)"
+  # condition-on-previous-text off + hallucination threshold: silence otherwise loops one phrase
   mlx_whisper "$dir/audio.wav" --model "$MODEL" --language en \
+      --condition-on-previous-text False --hallucination-silence-threshold 2 --no-speech-threshold 0.5 \
       --output-dir "$dir" --output-name transcript --output-format txt >>"$dir/whisper.log" 2>&1
   [[ -s "$dir/transcript.txt" ]] || { log "transcription failed, see $dir/whisper.log"; return 1; }
+  awk 'NF && $0 != prev { print } { prev = $0 }' "$dir/transcript.txt" > "$dir/transcript.tmp" && mv "$dir/transcript.tmp" "$dir/transcript.txt"   # drop repeated lines
 
   summarise "$dir"
 }

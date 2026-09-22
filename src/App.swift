@@ -50,6 +50,8 @@ final class AppState: ObservableObject {
     private var skipped = false          // "Skip" holds until the mic goes free again
     private var retryAfter = Date.distantPast
     private var panels: [String: (ActionsPanel, ActionsStore)] = [:]
+    let reviews = ReviewsStore()
+    private var reviewsPanel: ReviewsPanel?
     private var claudeWindow: Int?   // Terminal window id hosting the interactive claude session
     private var manual = false
     private var idleSince: Date?
@@ -190,6 +192,7 @@ final class AppState: ObservableObject {
     }
 
     func refresh() {
+        reviews.load()
         let fm = FileManager.default
         let dirs = (try? fm.contentsOfDirectory(at: meetingsDir, includingPropertiesForKeys: nil)) ?? []
         meetings = dirs.filter { $0.hasDirectoryPath }.map { url in
@@ -208,6 +211,7 @@ final class AppState: ObservableObject {
         switch url.host {
         case "record": if !recorder.isRecording { dismissAsk(); startRecording(manual: true) }; return
         case "stop":   if recorder.isRecording { stopRecording() }; return
+        case "reviews": openReviews(); return
         default: break
         }
         guard url.host == "actions" else { return }
@@ -215,6 +219,12 @@ final class AppState: ObservableObject {
         if FileManager.default.fileExists(atPath: meetingsDir.appendingPathComponent(id).appendingPathComponent("digest.md").path) {
             openActions(meetingsDir.appendingPathComponent(id))
         }
+    }
+
+    func openReviews() {
+        reviews.load()
+        if reviewsPanel == nil { reviewsPanel = ReviewsPanel(store: reviews) }
+        reviewsPanel?.makeKeyAndOrderFront(nil)
     }
 
     func openActions(_ dir: URL) {
@@ -294,6 +304,15 @@ struct MenuView: View {
                 }
                 .controlSize(.small)
             }
+            Divider()
+            HStack(spacing: 8) {
+                Image(systemName: "eye").font(.caption).foregroundStyle(app.reviews.waiting > 0 ? Color.accentColor : .secondary).frame(width: 14)
+                Text("Reviews").font(.callout)
+                Spacer()
+                Text(app.reviews.waiting > 0 ? "\(app.reviews.waiting) waiting" : "none waiting").font(.caption).foregroundStyle(.secondary)
+            }
+            .padding(.vertical, 2).contentShape(Rectangle())
+            .onTapGesture { app.openReviews() }
             Divider()
             if app.meetings.isEmpty {
                 Text("No meetings yet").font(.callout).foregroundStyle(.secondary)

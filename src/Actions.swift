@@ -81,7 +81,9 @@ final class ActionsPanel: NSPanel {
         isReleasedWhenClosed = false
         standardWindowButton(.miniaturizeButton)?.isHidden = true
         standardWindowButton(.zoomButton)?.isHidden = true
-        contentView = NSHostingView(rootView: ActionsView(store: store, send: send))
+        let host = NSHostingView(rootView: ActionsView(store: store, send: send))
+        contentView = host
+        setContentSize(host.fittingSize)
         setFrameAutosaveName("actions")
         if frame.origin == .zero, let f = NSScreen.main?.visibleFrame {
             setFrameOrigin(NSPoint(x: f.maxX - frame.width - 24, y: f.maxY - frame.height - 60))

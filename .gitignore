@@ -5,3 +5,4 @@ meetings/
 config.env
 app.log
 .DS_Store
+reviews/

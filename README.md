@@ -48,9 +48,17 @@ The plist assumes `~/piroba` and the user `lukadadiani`; edit the paths if yours
 Keep the folder out of `~/Documents` — launchd agents can't read it without a TCC grant.
 Settings live in the menu-bar popover and are mirrored to `config.env` for the script.
 
+## Reviews queue
+
+Skills that want a human verdict (the xTrade `/mockup` skill, for one) drop a JSON
+file in `~/piroba/reviews/`. The menu shows how many are waiting; the Reviews panel
+offers Approve, Changes… (with a comment) and Send to… (a named reviewer; copies the
+link). The verdict is written back into the same file for the skill to read next run.
+
 ## URL actions
 
-`open piroba://record`, `open piroba://stop`, `open piroba://actions/<meeting-id>`.
+`open piroba://record`, `open piroba://stop`, `open piroba://reviews`,
+`open piroba://actions/<meeting-id>`.
 Handy from Raycast, a keyboard shortcut, or `piroba.sh` itself.
 
 ## Troubleshooting
@@ -65,6 +73,7 @@ src/App.swift       menu bar, auto-record loop, meeting list, Claude handoff
 src/Recorder.swift  AVAudioEngine tap -> wav segments + levels for the waveform
 src/Pill.swift      the floating recording capsule
 src/Actions.swift   the post-meeting actions panel
+src/Reviews.swift   the reviews queue (mockups awaiting a verdict)
 src/Settings.swift  settings model + view; writes config.env
 src/Audio.swift     mic-in-use detection, input device list
 piroba.sh           process | summarise | review
