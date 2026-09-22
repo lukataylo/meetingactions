@@ -235,6 +235,6 @@ struct PanelHeader: View {
                     .fixedSize(horizontal: false, vertical: true).padding(.top, 2)
             }
         }
-        .padding(.horizontal, 24).padding(.top, 32).padding(.bottom, 16)   // 32 = traffic-light row + 8
+        .padding(.horizontal, 24).padding(.top, 14).padding(.bottom, 16)   // content view already starts below the titlebar row
     }
 }
