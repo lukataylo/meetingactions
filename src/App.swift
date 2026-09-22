@@ -10,6 +10,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 @main
 struct PirobaApp: App {
+    static let redGlyph: NSImage = {
+        let cfg = NSImage.SymbolConfiguration(pointSize: 15, weight: .medium).applying(.init(paletteColors: [.systemRed]))
+        let img = NSImage(systemSymbolName: "phone.fill", accessibilityDescription: "Call detected")!.withSymbolConfiguration(cfg)!
+        img.isTemplate = false
+        return img
+    }()
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var delegate
     @StateObject private var settings = Settings()
     @StateObject private var app: AppState
@@ -19,7 +25,9 @@ struct PirobaApp: App {
         MenuBarExtra {
             MenuView().environmentObject(app).environmentObject(settings)
         } label: {
-            Image(systemName: app.recorder.isRecording ? "waveform.circle.fill" : "waveform")
+            // Template glyphs ignore colour, so the "call waiting" state is a pre-tinted image.
+            if app.callWaiting { Image(nsImage: PirobaApp.redGlyph) }
+            else { Image(systemName: app.recorder.isRecording ? "waveform.circle.fill" : "waveform") }
         }
         .menuBarExtraStyle(.window)
     }
@@ -47,7 +55,8 @@ final class AppState: ObservableObject {
     var meetingsDir: URL { root.appendingPathComponent("meetings") }
 
     private var pill: PillPanel?
-    private var ask: AskPanel?
+    private var ask: AskPanel? { didSet { callWaiting = ask != nil } }
+    @Published var callWaiting = false
     private var askedAt: Date?
     private var skipped = false          // "Skip" holds until the mic goes free again
     private var retryAfter = Date.distantPast
@@ -94,7 +103,7 @@ final class AppState: ObservableObject {
             if !recorder.isRecording, !skipped, ask == nil, Date() >= retryAfter {
                 settings.callMode == "auto" ? startRecording() : showAsk(holders.map(\.name))
             }
-            if let askedAt, Date().timeIntervalSince(askedAt) > 90 { dismissAsk(); skipped = true }   // unanswered = skip
+            if let askedAt, Date().timeIntervalSince(askedAt) > 20 { dismissAsk(); skipped = true }   // unanswered = skip
         } else {
             skipped = false
             if ask != nil { dismissAsk() }
@@ -107,8 +116,7 @@ final class AppState: ObservableObject {
 
     private func showAsk(_ names: [String]) {
         let who = names.prefix(2).joined(separator: " and ")
-        let panel = AskPanel(who: who, record: { [weak self] in self?.dismissAsk(); self?.startRecording() },
-                             skip:   { [weak self] in self?.dismissAsk(); self?.skipped = true })
+        let panel = AskPanel(who: who, record: { [weak self] in self?.dismissAsk(); self?.startRecording() })
         panel.orderFrontRegardless()
         ask = panel; askedAt = Date()
         NSSound(named: "Tink")?.play()

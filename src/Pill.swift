@@ -79,50 +79,64 @@ struct Waveform: View {
 }
 
 
-// Shown when another app opens the mic. Nothing is recorded until you say so.
+// Shown under the menu bar icon when another app opens the mic. One button.
+// Never takes focus; leaves by itself when the call ends or after 20 s.
 final class AskPanel: NSPanel {
-    init(who: String, record: @escaping () -> Void, skip: @escaping () -> Void) {
-        super.init(contentRect: NSRect(x: 0, y: 0, width: 380, height: 60),
+    static let size = NSSize(width: 172, height: 40)   // minimum; 32 pt pill + 8 pt caret
+
+    init(who: String, record: @escaping () -> Void) {
+        super.init(contentRect: NSRect(origin: .zero, size: AskPanel.size),
                    styleMask: [.nonactivatingPanel, .borderless, .fullSizeContentView],
                    backing: .buffered, defer: false)
         isFloatingPanel = true
-        level = .floating
-        collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
+        level = .statusBar
+        collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .transient]
         isOpaque = false
         backgroundColor = .clear
         hasShadow = true
-        isMovableByWindowBackground = true
         hidesOnDeactivate = false
         isReleasedWhenClosed = false
-        let host = NSHostingView(rootView: AskView(who: who, record: record, skip: skip))
+        let host = NSHostingView(rootView: AskView(who: who, record: record))
         contentView = host
-        setContentSize(host.fittingSize)   // the card is as wide as its text, never wider
-        if let f = NSScreen.main?.visibleFrame {
-            setFrameOrigin(NSPoint(x: f.maxX - frame.width - 16, y: f.maxY - frame.height - 12))
-        }
+        setContentSize(NSSize(width: min(max(host.fittingSize.width, AskPanel.size.width), 260), height: AskPanel.size.height))
+        // Anchor: centred under the status item. SwiftUI's MenuBarExtra owns an NSStatusBarWindow;
+        // its frame is the icon's frame on the menu bar.
+        let item = NSApp.windows.first { $0.className.contains("StatusBarWindow") }?.frame
+        let screen = (item.flatMap { f in NSScreen.screens.first { $0.frame.contains(f.origin) } } ?? NSScreen.main)?.frame ?? .zero
+        let x = item.map { $0.midX - frame.width / 2 } ?? (screen.maxX - frame.width - 16)
+        let y = item.map { $0.minY - frame.height - 2 } ?? (screen.maxY - 24 - frame.height - 8)
+        setFrameOrigin(NSPoint(x: x, y: y))
     }
 }
 
 struct AskView: View {
     var who: String
     var record: () -> Void
-    var skip: () -> Void
+    private var name: String { who.count > 24 ? String(who.prefix(23)) + "…" : who }
+
     var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: "phone.fill").foregroundStyle(.green)
-            VStack(alignment: .leading, spacing: 1) {
-                Text("Looks like you're on a call").font(.callout.weight(.medium)).fixedSize()
-                Text("\(who.count > 32 ? who.prefix(30) + "…" : who) has the mic — record your side?")
-                    .font(.caption).foregroundStyle(.secondary).fixedSize()
+        VStack(spacing: 0) {
+            Triangle().fill(.regularMaterial).frame(width: 16, height: 8)
+                .overlay(Triangle().stroke(.primary.opacity(0.08), lineWidth: 1))
+            HStack(spacing: 8) {
+                Circle().fill(.red).frame(width: 8, height: 8)
+                Text(name).font(.system(size: 13, weight: .medium)).lineLimit(1)
+                Spacer(minLength: 4)
+                Button("Record", action: record).controlSize(.small).fixedSize()
             }
-            Spacer(minLength: 12)
-            Button("Record", action: record).controlSize(.small).fixedSize().keyboardShortcut(.defaultAction)
-            Button(action: skip) { Image(systemName: "xmark").font(.system(size: 10, weight: .semibold)) }
-                .buttonStyle(.plain).foregroundStyle(.secondary).help("Not now")
-                .keyboardShortcut(.cancelAction)
+            .padding(.leading, 12).padding(.trailing, 6)
+            .frame(minWidth: AskPanel.size.width, maxWidth: 260)
+            .frame(height: 32)
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+            .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(.primary.opacity(0.08)))
         }
-        .padding(.leading, 14).padding(.trailing, 12).padding(.vertical, 10)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14))
-        .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(.primary.opacity(0.08)))
+    }
+}
+
+struct Triangle: Shape {
+    func path(in r: CGRect) -> Path {
+        var p = Path()
+        p.move(to: CGPoint(x: r.midX, y: r.minY)); p.addLine(to: CGPoint(x: r.maxX, y: r.maxY)); p.addLine(to: CGPoint(x: r.minX, y: r.maxY)); p.closeSubpath()
+        return p
     }
 }

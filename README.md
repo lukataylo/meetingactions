@@ -8,9 +8,10 @@ Claude Code as the summariser.
 ## How it works
 
 - Any app opening the microphone counts as a call (CoreAudio process list, so
-  Teams, Zoom, Meet, FaceTime all work). By default a small card names the app
-  and asks whether to record; Settings can switch that to record automatically,
-  or do nothing. Recording uses the Mac's built-in microphone unless you pick
+  Teams, Zoom, Meet, FaceTime all work). By default the menu bar glyph turns into
+  a red phone and a small pill drops under it with one button, Record; it leaves
+  by itself when the call ends or after 20 s. Settings can switch that to record
+  automatically, or do nothing. Recording uses the Mac's built-in microphone unless you pick
   another in Settings: opening a Bluetooth headset's mic would flip it into the
   call profile, which pauses music and steals the link from your meeting app.
   Other recorders (Granola, Descript, OBS, QuickTime by default)
